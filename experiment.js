@@ -181,7 +181,9 @@ function createTrials(argumentsData) {
                 // Record total time for the entire argument
                 const totalTime = Date.now() - argumentStartTime;
                 data.participant_response = data.response === 0 ? 'valid' : 'invalid';
+                // records rt to pass premise 2
                 data.response_rt = Math.round(data.rt);
+                // records rt to select between valid and invalid
                 data.total_argument_time = Math.round(totalTime);
                 data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
                 
