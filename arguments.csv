@@ -1,0 +1,42 @@
+
+premise1,premise2,conclusion,validity,argument_type
+All M are P,Some S are M,Some S are P,valid,abstract
+All dolls are man made,Some toys are dolls,Some toys are man made,valid,concrete
+All doughnuts are sugary,Some pastries are doughnuts,Some pastries are sugary,valid,concrete
+All singers are vocalists,Some guitarists are singers,Some guitarists are vocalists,valid,concrete
+All clowns can juggle,Some circus performers are clowns,Some circus performers can juggle,valid,concrete
+All M are P,Some M are S,Some S are P,valid,abstract
+All poets are writers,Some poets are teachers,Some teachers are writers,valid,concrete
+All mugs are cups,Some mugs are ceramics,Some ceramics are cups,valid,concrete
+All ponies neigh,Some ponies are thoroughbreds,Some thoroughbreds neigh,valid,concrete
+All statues are sculptures,Some statues are bronzes,Some bronzes are sculptures,valid,concrete
+Some P are M,All M are S,Some S are P,valid,abstract
+Some criminals are liars,All liars are humans,Some humans are criminals,valid,concrete
+Some cars are trucks,All trucks are vehicles,Some vehicles are cars,valid,concrete
+Some parents are widows,All widows are women,Some women are parents,valid,concrete
+Some bags are suitcases,All suitcases are pieces of luggage,Some pieces of luggage are bags,valid,concrete
+Some M are P,All M are S,Some S are P,valid,abstract
+Some grapes are red,All grapes are fruits,Some fruits are red,valid,concrete
+Some swords are decorative,All swords are weapons,Some weapons are decorative,valid,concrete
+Some burgers are overcooked,All burgers are sandwiches,Some sandwiches are overcooked,valid,concrete
+Some rifles are for hunting,All rifles are guns,Some guns are for hunting,valid,concrete
+All P are M,Some S are M,Some S are P,invalid,abstract
+All vocalists are singers,Some guitarists are singers,Some guitarists are vocalists,invalid,concrete
+All computers run code,Some calculators run code,Some calculators are computers,invalid,concrete
+All suit pieces are made from fabric,Some shirts are made from fabric,Some shirts are suit pieces,invalid,concrete
+All baby chicks have down,Some birds have down,Some birds are baby chicks,invalid,concrete
+All P are M,Some M are S,Some S are P,invalid,abstract
+All chili dogs are hotdogs,Some hotdogs are grilled,Some grilled things are chili dogs,invalid,concrete
+All pens are writing utensils,Some writing utensils use black ink,Some things that use black ink are pens,invalid,concrete
+All paintings are framed,Some framed things are portraits,Some portraits are paintings,invalid,concrete
+All speakers are hardware,Some hardware produces audio,Some speakers produce audio,invalid,concrete
+Some P are M,All S are M,Some S are P,invalid,abstract
+Some bags are pieces of luggage,All suitcases are pieces of luggage,Some suitcases are bags,invalid,concrete
+Some criminals are liars,All humans are liars,Some humans are criminals,invalid,concrete
+Some buildings are workspaces,All offices are workspaces,Some offices are buildings,invalid,concrete
+Some desserts are sweet,All candy is sweet,Some candy is dessert,invalid,concrete
+Some M are P,All S are M,Some S are P,invalid,abstract
+Some paths are straight,All roads are paths,Some roads are straight,invalid,concrete
+Some footwear are high heels,All shoes are footwear,Some shoes are high heels,invalid,concrete
+Some chairs have four legs,All things you can sit in are chairs,Some things you can sit in have four legs,invalid,concrete
+Some containers are glasses,All cups are containers,Some cups are glasses,invalid,concrete
