@@ -157,44 +157,18 @@ function createTrials(argumentsData) {
         
         // Show Conclusion
         const conclusionTrial = {
-            type: jsPsychHtmlKeyboardResponse,
+            type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                     <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #fff3cd; border-radius: 8px;">
                         <p style="font-weight: bold; color: #856404; margin-bottom: 15px;">Conclusion:</p>
                         <p style="font-size: 28px; line-height: 1.6;">${conclusion}</p>
                     </div>
-                    <p style="color: #666; margin-top: 30px;">Press any key to continue</p>
-                </div>
-            `,
-            data: {
-                custom_trial_type: 'conclusion',
-                participant_id: participant_id,
-                trial_number: index + 1,
-                premise1: premise1,
-                premise2: premise2,
-                conclusion: conclusion,
-                correct_validity: item.validity,
-                argument_type: item.argument_type
-            }
-        };
-        
-        // Validity judgment
-        const validityTrial = {
-            type: jsPsychHtmlButtonResponse,
-            stimulus: `
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <h3 style="margin-bottom: 30px;">Does the conclusion logically follow from the premises?</h3>
-                    <div style="text-align: left; padding: 25px; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 30px;">
-                        <p style="margin: 10px 0;"><strong>Premise 1:</strong> ${premise1}</p>
-                        <p style="margin: 10px 0;"><strong>Premise 2:</strong> ${premise2}</p>
-                        <p style="margin: 10px 0; color: #856404;"><strong>Conclusion:</strong> ${conclusion}</p>
-                    </div>
                 </div>
             `,
             choices: ['Valid', 'Invalid'],
             data: {
-                custom_trial_type: 'validity_judgment',
+                custom_trial_type: 'conclusion and judgement',
                 participant_id: participant_id,
                 trial_number: index + 1,
                 premise1: premise1,
@@ -223,7 +197,55 @@ function createTrials(argumentsData) {
             }
         };
         
-        experimentTrials.push(premise1Trial, premise2Trial, conclusionTrial, validityTrial);
+        /*
+        // Validity judgment
+        const validityTrial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h3 style="margin-bottom: 30px;">Does the conclusion logically follow from the premises?</h3>
+                    <div style="text-align: left; padding: 25px; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 30px;">
+                        <p style="margin: 10px 0;"><strong>Premise 1:</strong> ${premise1}</p>
+                        <p style="margin: 10px 0;"><strong>Premise 2:</strong> ${premise2}</p>
+                        <p style="margin: 10px 0; color: #856404;"><strong>Conclusion:</strong> ${conclusion}</p>
+                    </div>
+                </div>
+            `,
+            choices: ['Valid', 'Invalid'],
+            data: {
+                custom_trial_type: 'validity_judgment',
+                participant_id: participant_id,
+                trial_number: index + 1,
+                premise1: premise1,
+                premise2: premise2,
+                conclusion: conclusion,
+                correct_validity: item.validity,
+                argument_type: item.argument_type
+            },
+            
+            on_finish: function(data) {
+                // Record total time for the entire argument
+                const totalTime = Date.now() - argumentStartTime;
+                data.participant_response = data.response === 0 ? 'valid' : 'invalid';
+                data.response_rt = Math.round(data.rt);
+                data.total_argument_time = Math.round(totalTime);
+                data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
+                
+                console.log(`Trial ${index + 1} completed:`, {
+                    premises: [premise1, premise2],
+                    conclusion: conclusion,
+                    correct: data.correct_validity,
+                    response: data.participant_response,
+                    is_correct: data.is_correct,
+                    rt: data.response_rt,
+                    total_time: data.total_argument_time
+                });
+            }
+                
+        };
+        */
+        
+        experimentTrials.push(premise1Trial, premise2Trial, conclusionTrial /*, validityTrial */);
     });
     
     return experimentTrials;
@@ -234,7 +256,7 @@ function getFilteredData() {
     const allTrials = jsPsych.data.get().values();
     console.log('All trials:', allTrials.length);
     
-    const judgmentTrials = allTrials.filter(trial => trial.custom_trial_type === 'validity_judgment');
+    const judgmentTrials = allTrials.filter(trial => trial.custom_trial_type === 'conclusion and judgement');
     console.log(`Validity judgment trials found: ${judgmentTrials.length}`);
     
     // if there's no data, return empty CSV
