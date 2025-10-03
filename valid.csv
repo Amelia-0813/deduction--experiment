@@ -1,0 +1,21 @@
+premise_1,premise_2,conclusion,middleterm,group,form
+All M are P,Some S are M,Some S are P,,,Darii
+All dolls are man made,Some toys are dolls ,Some toys are man made,dolls,1,Darii
+All doughnuts are sugary ,Some pastries are doughnuts ,Some pastries are sugary,doughnuts,1,Darii
+All singers are vocalists ,Some guitarists are singers,Some guitarists are vocalists,singers,1,Darii
+All clowns can juggle ,Some circus performers are clowns ,Some circus performers can juggle,clowns,1,Darii
+All M are P,Some M are S,Some S are P,,,Datisi
+All poets are writers ,Some poets are teachers,Some teachers are writers,poets,2,Datisi
+All mugs are cups ,Some mugs are ceramics,Some ceramics are cups ,mugs,2,Datisi
+All ponies neigh,Some ponies are thoroughbreds,Some thoroughbreds neigh,ponies,2,Datisi
+All statues are sculptures,Some statues are bronzes,Some bronzes are sculptures,statues,2,Datisi
+Some P are M,All M are S,Some S are P,,,Dimatis
+Some criminals are liars ,All liars are humans,Some humans are criminals ,liars,3,Dimatis
+Some cars are trucks ,All trucks are vehicles,Some vehicles are cars ,trucks,3,Dimatis
+Some parents are widows ,All widows are women,Some women are parents,widows,3,Dimatis
+Some bags are suitcases,All suitcases are pieces of luggage,Some pieces of luggage are bags,suitcases,3,Dimatis
+Some M are P,All M are S,Some S are P,,,Dimatis
+Some grapes are red ,All grapes are fruits ,Some fruits are red ,grapes,4,Disamis
+Some swords are decorative,All swords are weapons ,Some weapons are decorative ,swords,4,Disamis
+Some burgers are overcooked ,All burgers are sandwiches,Some sandwiches are overcooked ,burgers,4,Disamis
+Some rifles are for hunting,All rifles are guns ,Some guns are for hunting,rifles,4,Disamis

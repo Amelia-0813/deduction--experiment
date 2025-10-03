@@ -1,0 +1,33 @@
+premise_1,premise_2,conclusion,middleterm,group,form,validity
+All dolls are man made,Some toys are dolls ,Some toys are man made,dolls,1,Darii,valid
+All doughnuts are sugary ,Some pastries are doughnuts ,Some pastries are sugary,doughnuts,1,Darii,valid
+All singers are vocalists ,Some guitarists are singers,Some guitarists are vocalists,singers,1,Darii,valid
+All clowns can juggle ,Some circus performers are clowns ,Some circus performers can juggle,clowns,1,Darii,valid
+All poets are writers ,Some poets are teachers,Some teachers are writers,poets,2,Datisi,valid
+All mugs are cups ,Some mugs are ceramics,Some ceramics are cups ,mugs,2,Datisi,valid
+All ponies neigh,Some ponies are thoroughbreds,Some thoroughbreds neigh,ponies,2,Datisi,valid
+All statues are sculptures,Some statues are bronzes,Some bronzes are sculptures,statues,2,Datisi,valid
+Some criminals are liars ,All liars are humans,Some humans are criminals ,liars,3,Dimatis,valid
+Some cars are trucks ,All trucks are vehicles,Some vehicles are cars ,trucks,3,Dimatis,valid
+Some parents are widows ,All widows are women,Some women are parents,widows,3,Dimatis,valid
+Some bags are suitcases,All suitcases are pieces of luggage,Some pieces of luggage are bags,suitcases,3,Dimatis,valid
+Some grapes are red ,All grapes are fruits ,Some fruits are red ,grapes,4,Disamis,valid
+Some swords are decorative,All swords are weapons ,Some weapons are decorative ,swords,4,Disamis,valid
+Some burgers are overcooked ,All burgers are sandwiches,Some sandwiches are overcooked ,burgers,4,Disamis,valid
+Some rifles are for hunting,All rifles are guns ,Some guns are for hunting,rifles,4,Disamis,valid
+All vocalists are singers,Some guitarists are singers,Some guitarists are vocalists,"singer, vocalist",1,Darii,invalid
+All computers run code,Some calculators run code,Some calculators are computers,"computers, code",1,Darii,invalid
+All suit pieces are made from fabric,Some shirts are made from fabric,Some shirts are suit pieces,"suit pieces, made from fabric",1,Darii,invalid
+All baby chicks have down,Some birds have down,Some birds are baby chicks,"baby chicks, having down",1,Darii,invalid
+All chili dogs are hotdogs,Some hotdogs are grilled,Some grilled things are chili dogs,"chili dogs, hotdogs",2,Datisi,invalid
+All pens are writting utensils,Some writing utensils use black ink,Some things that use black ink are pens,"pens, writing utensils",2,Datisi,invalid
+All paintings are framed,Some framed things are portraits,Some portraits are paintings,"paintings, framed",2,Datisi,invalid
+All speakers are hardware,Some hardware produces audio,Some speakers produce audio,"speakers, hardware",2,Datisi,invalid
+Some bags are pieces of luggage,All suitcases are pieces of luggage,Some suitcases are bags,"pieces of luggage, suitcases",3,Dimatis,invalid
+Some criminals are liars,All humans are liars,Some humans are criminals,"humans, liars",3,Dimatis,invalid
+Some buildings are workspaces,All offices are workspaces,Some offices are buildings,"offices, workspacse",3,Dimatis,invalid
+Some desserts are sweet,All candy is sweet,Some candy is dessert,"candy, sweet",3,Dimatis,invalid
+Some paths are straight,All roads are paths,Some roads are straight,"roads, paths",4,Disamis,invalid
+Some footwear are high heels,All shoes are footwear,Some shoes are high heels,"shoes, footwear",4,Disamis,invalid
+Some chairs have four legs,All things you can sit in are chairs,Some things you can sit in have four legs,"chairs, things you can sit in",4,Disamis,invalid
+Some containters are glasses,All cups are containers,Some cups are glasses,"cups, containers",4,Disamis,invalid

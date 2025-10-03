@@ -1,0 +1,17 @@
+premise_1,premise_2,conclusion,group,form,validity,abstraction
+All @ are #,Some & are @,Some & are #,1,Darii,valid,symbol
+All % are &,Some $ are &,Some $ are %,1,Darii,invalid,symbol
+All gheen are thwank,Some chorse are gheen,Some chorse are thwank,1,Darii,valid,nonce
+All chelve are fiek,Some snealt are fiek,Some snealt are chelve,1,Darii,invalid,nonce
+All $ are #,Some $ are &,Some & are #,2,Datisi,valid,symbol
+All & are %,Some % are #,Some # are &,2,Datisi,invalid,symbol
+All shregg are gwerm,Some shregg are spleash,Some spleash are gwerm,2,Datisi,valid,nonce
+All cralt are pliek,Some pliek are lebb,Some lebb are cralt,2,Datisi,invalid,nonce
+Some & are #,All % are $,Some $ are &,3,Dimatis,valid,symbol
+Some $ are %,All @ are %,Some @ are $,3,Dimatis,invalid,symbol
+Some yolve are whinge,All whinge are clurp,Some clurp are yolve,3,Dimatis,valid,nonce
+Some twoop are sonch,All dwaint are sonch,Some dwaint are twoop,3,Dimatis,invalid,nocne
+Some @ are %,All @ are $,Some $ are %,4,Disamis,valid,symbol
+Some & are @,All % are &,Some % are @,4,Disamis,invalid,symbol
+Some swawk are draph,All swawk are kisque,Some kisque are draph,4,Disamis,valid,nonce
+Some bloise are zooth,All plive are bloise,Some plive are zooth,4,Disamis,invalid,nonce

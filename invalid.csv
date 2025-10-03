@@ -1,0 +1,21 @@
+premise_1,premise_2,conclusion,middelterm,group,form,Original Type
+All P are M,Some S are M,Some S are P,,,Darii*,
+All vocalists are singers,Some guitarists are singers,Some guitarists are vocalists,"singer, vocalist",1,Darii*,yes
+All computers run code,Some calculators run code,Some calculators are computers,"computers, code",1,Darii*,
+All suit pieces are made from fabric,Some shirts are made from fabric,Some shirts are suit pieces,"suit pieces, made from fabric",1,Darii*,
+All baby chicks have down,Some birds have down,Some birds are baby chicks,"baby chicks, having down",1,Darii*,
+All P are M,Some M are S,Some S are P,,,Datisi*,
+All chili dogs are hotdogs,Some hotdogs are grilled,Some grilled things are chili dogs,"chili dogs, hotdogs",2,Datisi*,
+All pens are writting utensils,Some writing utensils use black ink,Some things that use black ink are pens,"pens, writing utensils",2,Datisi*,
+All paintings are framed,Some framed things are portraits,Some portraits are paintings,"paintings, framed",2,Datisi*,
+All speakers are hardware,Some hardware produces audio,Some speakers produce audio,"speakers, hardware",2,Datisi*,
+Some P are M,All S are M,Some S are P,,,Dimatis*,
+Some bags are pieces of luggage,All suitcases are pieces of luggage,Some suitcases are bags,"pieces of luggage, suitcases",3,Dimatis*,
+Some criminals are liars,All humans are liars,Some humans are criminals,"humans, liars",3,Dimatis*,yes
+Some buildings are workspaces,All offices are workspaces,Some offices are buildings,"offices, workspacse",3,Dimatis*,
+Some desserts are sweet,All candy is sweet,Some candy is dessert,"candy, sweet",3,Dimatis*,
+Some M are P,All S are M,Some S are P,,,Disamis*,
+Some paths are straight,All roads are paths,Some roads are straight,"roads, paths",4,Disamis*,
+Some footwear are high heels,All shoes are footwear,Some shoes are high heels,"shoes, footwear",4,Disamis*,
+Some chairs have four legs,All things you can sit in are chairs,Some things you can sit in have four legs,"chairs, things you can sit in",4,Disamis*,
+Some containters are glasses,All cups are containers,Some cups are glasses,"cups, containers",4,Disamis*,

@@ -1,5 +1,20 @@
 // generate random participant 
-let participant_id = `participant${Math.floor(Math.random() * 999) + 1}`;
+let participant_num = Math.floor(Math.random() * 999) + 1;
+let participant_id = `participant${participant_num}`;
+let abstract_num = participant_num % 3;
+
+// determines the type of abstract arguments based off the randomly generated id number
+switch (abstract_num) {
+    case 0:
+        abstract_type = 'abstract_letter_symbol.csv'
+        break;
+    case 1:
+        abstract_type = 'abstract_nonce_letter.csv'
+        break;
+    case 2:
+        abstract_type = 'abstract_symbol_nonce.csv'
+        break;
+}
 
 // function to generate a random string for the completion code 
 function generateRandomString(length) {
@@ -85,15 +100,13 @@ const instructions = {
     }
 };
 
-// DELETED: getSentenceFrame function (not needed anymore)
-
 // CHANGED: Completely rewritten createTrials function
 function createTrials(argumentsData) {
     const experimentTrials = [];
     
     argumentsData.forEach((item, index) => {
-        const premise1 = item.premise1;
-        const premise2 = item.premise2;
+        const premise1 = item.premise_1;
+        const premise2 = item.premise_2;
         const conclusion = item.conclusion;
         
         if (!premise1 || !premise2 || !conclusion) {
@@ -155,61 +168,14 @@ function createTrials(argumentsData) {
             }
         };
         
-        // Show Conclusion
-        const conclusionTrial = {
+        // Show conclusion and validity judgment
+        const validityTrial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                     <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #fff3cd; border-radius: 8px;">
                         <p style="font-weight: bold; color: #856404; margin-bottom: 15px;">Conclusion:</p>
                         <p style="font-size: 28px; line-height: 1.6;">${conclusion}</p>
-                    </div>
-                </div>
-            `,
-            choices: ['Valid', 'Invalid'],
-            data: {
-                custom_trial_type: 'conclusion and judgement',
-                participant_id: participant_id,
-                trial_number: index + 1,
-                premise1: premise1,
-                premise2: premise2,
-                conclusion: conclusion,
-                correct_validity: item.validity,
-                argument_type: item.argument_type
-            },
-            on_finish: function(data) {
-                // Record total time for the entire argument
-                const totalTime = Date.now() - argumentStartTime;
-                data.participant_response = data.response === 0 ? 'valid' : 'invalid';
-                // records rt to pass premise 2
-                data.response_rt = Math.round(data.rt);
-                // records rt to select between valid and invalid
-                data.total_argument_time = Math.round(totalTime);
-                data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
-                
-                console.log(`Trial ${index + 1} completed:`, {
-                    premises: [premise1, premise2],
-                    conclusion: conclusion,
-                    correct: data.correct_validity,
-                    response: data.participant_response,
-                    is_correct: data.is_correct,
-                    rt: data.response_rt,
-                    total_time: data.total_argument_time
-                });
-            }
-        };
-        
-        /*
-        // Validity judgment
-        const validityTrial = {
-            type: jsPsychHtmlButtonResponse,
-            stimulus: `
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <h3 style="margin-bottom: 30px;">Does the conclusion logically follow from the premises?</h3>
-                    <div style="text-align: left; padding: 25px; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 30px;">
-                        <p style="margin: 10px 0;"><strong>Premise 1:</strong> ${premise1}</p>
-                        <p style="margin: 10px 0;"><strong>Premise 2:</strong> ${premise2}</p>
-                        <p style="margin: 10px 0; color: #856404;"><strong>Conclusion:</strong> ${conclusion}</p>
                     </div>
                 </div>
             `,
@@ -224,7 +190,6 @@ function createTrials(argumentsData) {
                 correct_validity: item.validity,
                 argument_type: item.argument_type
             },
-            
             on_finish: function(data) {
                 // Record total time for the entire argument
                 const totalTime = Date.now() - argumentStartTime;
@@ -243,11 +208,9 @@ function createTrials(argumentsData) {
                     total_time: data.total_argument_time
                 });
             }
-                
         };
-        */
         
-        experimentTrials.push(premise1Trial, premise2Trial, conclusionTrial /*, validityTrial */);
+        experimentTrials.push(premise1Trial, premise2Trial, validityTrial);
     });
     
     return experimentTrials;
@@ -258,7 +221,7 @@ function getFilteredData() {
     const allTrials = jsPsych.data.get().values();
     console.log('All trials:', allTrials.length);
     
-    const judgmentTrials = allTrials.filter(trial => trial.custom_trial_type === 'conclusion and judgement');
+    const judgmentTrials = allTrials.filter(trial => trial.custom_trial_type === 'validity_judgment');
     console.log(`Validity judgment trials found: ${judgmentTrials.length}`);
     
     // if there's no data, return empty CSV
@@ -315,7 +278,7 @@ function getFilteredData() {
 const save_data = {
     type: jsPsychPipe,
     action: "save",
-    experiment_id: "AOAhOmsHgMT3",
+    experiment_id: "iEGcC0iYDj4r",
     filename: filename,
     data_string: getFilteredData,
     on_finish: function(data) {
@@ -347,9 +310,9 @@ const final_screen = {
 };
 
 // CHANGED: Renamed function and updated to load arguments
-async function loadArguments() {
+async function loadArguments(filename) {
     try {
-        const response = await fetch('arguments.csv');  // CHANGED: filename
+        const response = await fetch(filename);  // CHANGED: filename
         const csvText = await response.text();
         
         const results = Papa.parse(csvText, {
@@ -374,22 +337,35 @@ async function runExperiment() {
     try {
         console.log('Starting experiment...');
         console.log('Participant ID:', participant_id);
+        console.log('Abstract type:', abstract_type)
         console.log('Completion code:', completion_code);
+
+        const abstractData = await loadArguments(abstract_type);
+        console.log('Loaded abstract arguments:', abstractData.length);  
+
+        if (abstractData.length === 0) {  
+            throw new Error('No arguments loaded from abstract file');  
+        }
+
+        const abstractTrials = createTrials(abstractData);
+        console.log('Created abstract trials:', abstractTrials.length / 3);
         
-        const argumentsData = await loadArguments();  // CHANGED
-        console.log('Loaded arguments:', argumentsData.length);  // CHANGED
+
+        const concreteData = await loadArguments('concrete.csv');  
+        console.log('Loaded concrete arguments:', concreteData.length); 
         
-        if (argumentsData.length === 0) {  // CHANGED
-            throw new Error('No arguments loaded from CSV file');  // CHANGED
+        if (concreteData.length === 0) {  
+            throw new Error('No arguments loaded from concrete file');  
         }
         
-        const experimentTrials = createTrials(argumentsData);  // CHANGED
-        console.log('Created experiment trials:', experimentTrials.length);
+        const concreteTrials = createTrials(concreteData); 
+        console.log('Created concrete trials:', concreteTrials.length / 3);
             
         timeline = [
             consent,
             instructions,
-            ...experimentTrials,
+            ...abstractTrials,
+            ...concreteTrials,
             save_data,
             final_screen
         ];
