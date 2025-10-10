@@ -33,7 +33,8 @@ const filename = `${participant_id}.csv`;
 
 // Initialize jsPsych
 const jsPsych = initJsPsych({
-    show_progress_bar: false,
+    show_progress_bar: true,
+    auto_update_progress_bar: true,
     on_finish: function() {
         jsPsych.data.displayData();
     }
@@ -77,24 +78,40 @@ const consent = {
 
 // CHANGED: Updated instructions for logic arguments
 const instructions = {
-    type: jsPsychHtmlKeyboardResponse,  
+    type: jsPsychHtmlButtonResponse,  
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Instructions</h2>
             <p>In this experiment, you will evaluate logical arguments.</p>
             <p>Each argument consists of two premises and a conclusion.</p>
-            <p>The premises and conclusion will appear one at a time. Press any key to advance to the next statement.</p>
+            <p>The premises and conclusion will appear one at a time. Click the button to advance to the next statement.</p>
             <p>After reading all statements, you will be asked whether the conclusion logically follows from the premises.</p>
-            <p><strong>Example:</strong></p>
+            <p><strong>Valid Example:</strong></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All dogs are mammals.</p>
                 <p><strong>Premise 2:</strong> Fido is a dog.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
             <p>In this case, the conclusion is <strong>valid</strong> because it logically follows from the premises.</p>
-            <p><strong>Press any key when you're ready to begin.</strong></p>
+            <p><strong>Invalid Example:</strong></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All mammals are animals.</p>
+                <p><strong>Premise 2:</strong> Fido is an animal.</p>
+                <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
+            </div>
+            <p>In this case, the conclusion is <strong>invalid</strong> because it does not follow from the premises. 
+            <p>The first set of trials will use nonsense words and symbols. Please do your best to focus on the logic of the argument.<p>
+            <p><strong>Abstract Example:</strong></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All $ are @.</p>
+                <p><strong>Premise 2:</strong> & is $.</p>
+                <p><strong>Conclusion:</strong> Therefore, & is @.</p>
+            </div>
+            <p>The conclusion is <strong>valid</strong> because it logically follows from the premises.<p>
+            <p><strong>Press 'Start' when you're ready to begin.</strong></p>
         </div>
     `,
+    choices: ['Start'],
     data: {
         trial_type: 'instructions'
     }
@@ -119,16 +136,16 @@ function createTrials(argumentsData) {
         
         // Show Premise 1
         const premise1Trial = {
-            type: jsPsychHtmlKeyboardResponse,
+            type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                     <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #f8f9fa; border-radius: 8px;">
                         <p style="font-weight: bold; color: #666; margin-bottom: 15px;">Premise 1:</p>
                         <p style="font-size: 28px; line-height: 1.6;">${premise1}</p>
                     </div>
-                    <p style="color: #666; margin-top: 30px;">Press any key to continue</p>
                 </div>
             `,
+            choices: ["Next"],
             data: {
                 custom_trial_type: 'premise1',
                 participant_id: participant_id,
@@ -146,16 +163,16 @@ function createTrials(argumentsData) {
         
         // Show Premise 2
         const premise2Trial = {
-            type: jsPsychHtmlKeyboardResponse,
+            type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                     <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #f8f9fa; border-radius: 8px;">
                         <p style="font-weight: bold; color: #666; margin-bottom: 15px;">Premise 2:</p>
                         <p style="font-size: 28px; line-height: 1.6;">${premise2}</p>
                     </div>
-                    <p style="color: #666; margin-top: 30px;">Press any key to continue</p>
                 </div>
             `,
+            choices: ['Next'],
             data: {
                 custom_trial_type: 'premise2',
                 participant_id: participant_id,

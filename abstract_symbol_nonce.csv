@@ -1,17 +1,17 @@
 premise_1,premise_2,conclusion,group,form,validity,abstraction
 All @ are #,Some & are @,Some & are #,1,Darii,valid,symbol
 All % are &,Some $ are &,Some $ are %,1,Darii,invalid,symbol
-All gheen are thwank,Some chorse are gheen,Some chorse are thwank,1,Darii,valid,nonce
-All chelve are fiek,Some snealt are fiek,Some snealt are chelve,1,Darii,invalid,nonce
+All gheens are thwanks,Some chorse are gheens,Some chorse are thwanks,1,Darii,valid,nonce
+All chelves are fieks,Some snealts are fieks,Some snealts are chelves,1,Darii,invalid,nonce
 All $ are #,Some $ are &,Some & are #,2,Datisi,valid,symbol
 All & are %,Some % are #,Some # are &,2,Datisi,invalid,symbol
-All shregg are gwerm,Some shregg are spleash,Some spleash are gwerm,2,Datisi,valid,nonce
-All cralt are pliek,Some pliek are lebb,Some lebb are cralt,2,Datisi,invalid,nonce
+All shreggs are gwerms,Some shreggs are spleashes,Some spleashes are gwerms,2,Datisi,valid,nonce
+All cralts are plieks,Some plieks are lebbs,Some lebbs are cralts,2,Datisi,invalid,nonce
 Some & are #,All % are $,Some $ are &,3,Dimatis,valid,symbol
 Some $ are %,All @ are %,Some @ are $,3,Dimatis,invalid,symbol
-Some yolve are whinge,All whinge are clurp,Some clurp are yolve,3,Dimatis,valid,nonce
-Some twoop are sonch,All dwaint are sonch,Some dwaint are twoop,3,Dimatis,invalid,nocne
+Some yolves are whinges,All whinges are clurps,Some clurps are yolves,3,Dimatis,valid,nonce
+Some twoops are sonches,All dwaints are sonches,Some dwaints are twoops,3,Dimatis,invalid,nocne
 Some @ are %,All @ are $,Some $ are %,4,Disamis,valid,symbol
 Some & are @,All % are &,Some % are @,4,Disamis,invalid,symbol
-Some swawk are draph,All swawk are kisque,Some kisque are draph,4,Disamis,valid,nonce
-Some bloise are zooth,All plive are bloise,Some plive are zooth,4,Disamis,invalid,nonce
+Some swawks are draphs,All swawks are kisques,Some kisques are draphs,4,Disamis,valid,nonce
+Some bloises are zooths,All plives are bloises,Some plives are zooths,4,Disamis,invalid,nonce
