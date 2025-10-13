@@ -153,7 +153,8 @@ function createTrials(argumentsData) {
                 premise2: premise2,
                 conclusion: conclusion,
                 correct_validity: item.validity,
-                argument_type: item.argument_type
+                abstraction: item.abstraction,
+                form: item.form
             },
             on_start: function() {
                 argumentStartTime = Date.now();
@@ -180,7 +181,8 @@ function createTrials(argumentsData) {
                 premise2: premise2,
                 conclusion: conclusion,
                 correct_validity: item.validity,
-                argument_type: item.argument_type
+                abstraction: item.abstraction,
+                form: item.form
             }
         };
         
@@ -204,7 +206,8 @@ function createTrials(argumentsData) {
                 premise2: premise2,
                 conclusion: conclusion,
                 correct_validity: item.validity,
-                argument_type: item.argument_type
+                abstraction: item.abstraction,
+                form: item.form
             },
             on_finish: function(data) {
                 // Record total time for the entire argument
@@ -247,7 +250,7 @@ function getFilteredData() {
     }
     
     try {
-        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,argument_type,participant_response,is_correct,response_rt,total_argument_time';
+        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,response_rt,total_argument_time';
         const rows = [];
         
         judgmentTrials.forEach((trial, trialIndex) => {
@@ -260,9 +263,10 @@ function getFilteredData() {
                 trial.premise2 || '',
                 trial.conclusion || '',
                 trial.correct_validity || '',
-                trial.argument_type || '',
                 trial.participant_response || '',
                 trial.is_correct !== undefined ? trial.is_correct : '',
+                trial.form || '',
+                trial.abstraction || '',
                 Math.round(trial.response_rt || 0),
                 Math.round(trial.total_argument_time || 0)
             ];
