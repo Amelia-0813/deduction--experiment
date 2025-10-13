@@ -223,6 +223,8 @@ function createTrials(argumentsData) {
                     correct: data.correct_validity,
                     response: data.participant_response,
                     is_correct: data.is_correct,
+                    form: data.form,
+                    abstraction: data.abstraction,
                     rt: data.response_rt,
                     total_time: data.total_argument_time
                 });
@@ -235,7 +237,6 @@ function createTrials(argumentsData) {
     return experimentTrials;
 }
 
-// CHANGED: Completely rewritten getFilteredData function
 function getFilteredData() {   
     const allTrials = jsPsych.data.get().values();
     console.log('All trials:', allTrials.length);
