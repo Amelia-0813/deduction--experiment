@@ -216,6 +216,8 @@ function createTrials(argumentsData) {
                 data.response_rt = Math.round(data.rt);
                 data.total_argument_time = Math.round(totalTime);
                 data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
+                data.abstraction = abstraction;
+                data.form = form;
                 
                 console.log(`Trial ${index + 1} completed:`, {
                     premises: [premise1, premise2],
@@ -223,8 +225,8 @@ function createTrials(argumentsData) {
                     correct: data.correct_validity,
                     response: data.participant_response,
                     is_correct: data.is_correct,
-                    form: data.form,
                     abstraction: data.abstraction,
+                    form: data.form,
                     rt: data.response_rt,
                     total_time: data.total_argument_time
                 });
