@@ -291,7 +291,7 @@ function getFilteredData() {
         return finalCSV;
     } catch (error) {
         console.error("Error in getFilteredData:", error);
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,argument_type,participant_response,is_correct,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
     }
 }
 
