@@ -246,7 +246,7 @@ function getFilteredData() {
     // if there's no data, return empty CSV
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,argument_type,participant_response,is_correct,response_rt,total_argument_time\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,response_rt,total_argument_time\n';
     }
     
     try {
