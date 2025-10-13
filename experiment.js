@@ -28,7 +28,7 @@ function generateRandomString(length) {
 
 const completion_code = generateRandomString(3) + 'zvz' + generateRandomString(3);
 
-// create filename for data saving
+// create filename for d saving
 const filename = `${participant_id}.csv`;
 
 // Initialize jsPsych
@@ -41,7 +41,6 @@ const jsPsych = initJsPsych({
 });
 
 let timeline = [];
-
 const consent = {
     type: jsPsychHtmlButtonResponse,  
     stimulus: `
@@ -297,7 +296,7 @@ const save_data = {
     action: "save",
     experiment_id: "AOAhOmsHgMT3",
     filename: filename,
-    data_string: getFilteredData,
+    data_string: () => getFilteredData(), 
     on_finish: function(data) {
         if (data.success) {
             console.log('Data saved successfully to DataPipe!');
