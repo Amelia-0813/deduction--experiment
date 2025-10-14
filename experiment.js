@@ -221,6 +221,8 @@ function createTrials(argumentsData) {
                 // Record total time for the entire argument
                 const totalTime = Date.now() - argumentStartTime;
                 data.participant_response = data.response === 0 ? 'valid' : 'invalid';
+                data.p1_rt = p1_rt,
+                data.p2_rt = p2_rt,
                 data.response_rt = Math.round(data.rt);
                 data.total_argument_time = Math.round(totalTime);
                 data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
