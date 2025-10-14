@@ -124,6 +124,8 @@ function createTrials(argumentsData) {
         const premise1 = item.premise_1;
         const premise2 = item.premise_2;
         const conclusion = item.conclusion;
+        p1_rt = 0;
+        p2_rt = 0;
         
         if (!premise1 || !premise2 || !conclusion) {
             console.warn('Trial missing data:', item);
@@ -158,7 +160,10 @@ function createTrials(argumentsData) {
             },
             on_start: function() {
                 argumentStartTime = Date.now();
-            }
+            },
+            on_finish: function(data) {
+                p1_rt = Math.round(data.rt)
+            },
         };
         
         // Show Premise 2
@@ -183,7 +188,10 @@ function createTrials(argumentsData) {
                 correct_validity: item.validity,
                 abstraction: item.abstraction,
                 form: item.form
-            }
+            },
+            on_finish: function(data) {
+                p2_rt = Math.round(data.rt)
+            },
         };
         
         // Show conclusion and validity judgment
@@ -225,6 +233,8 @@ function createTrials(argumentsData) {
                     is_correct: data.is_correct,
                     abstraction: data.abstraction,
                     form: data.form,
+                    p1_rt,
+                    p2_rt,
                     rt: data.response_rt,
                     total_time: data.total_argument_time
                 });
@@ -247,11 +257,11 @@ function getFilteredData() {
     // if there's no data, return empty CSV
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,response_rt,total_argument_time\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time\n';
     }
     
     try {
-        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,response_rt,total_argument_time';
+        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time';
         const rows = [];
         
         judgmentTrials.forEach((trial, trialIndex) => {
@@ -268,6 +278,8 @@ function getFilteredData() {
                 trial.is_correct !== undefined ? trial.is_correct : '',
                 trial.form || '',
                 trial.abstraction || '',
+                Math.round(trial.p1_rt || 0),
+                Math.round(trial.p2_rt || 0),
                 Math.round(trial.response_rt || 0),
                 Math.round(trial.total_argument_time || 0)
             ];
@@ -292,7 +304,7 @@ function getFilteredData() {
         return finalCSV;
     } catch (error) {
         console.error("Error in getFilteredData:", error);
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
     }
 }
 
@@ -368,10 +380,6 @@ async function runExperiment() {
             throw new Error('No arguments loaded from abstract file');  
         }
 
-        const abstractTrials = createTrials(abstractData);
-        console.log('Created abstract trials:', abstractTrials.length / 3);
-        
-
         const concreteData = await loadArguments('concrete.csv');  
         console.log('Loaded concrete arguments:', concreteData.length); 
         
@@ -379,14 +387,15 @@ async function runExperiment() {
             throw new Error('No arguments loaded from concrete file');  
         }
         
-        const concreteTrials = createTrials(concreteData); 
-        console.log('Created concrete trials:', concreteTrials.length / 3);
+        const trialData = abstractData.concat(concreteData);
+
+        const allTrials = createTrials(trialData); 
+        console.log('Created trials:', allTrials.length / 3);
             
         timeline = [
             consent,
             instructions,
-            ...abstractTrials,
-            ...concreteTrials,
+            ...allTrials,
             save_data,
             final_screen
         ];
