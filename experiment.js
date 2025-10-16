@@ -1,6 +1,10 @@
+// Get workerId from URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const workerId = urlParams.get('workerId');
+
 // generate random participant 
 let participant_num = Math.floor(Math.random() * 999) + 1;
-let participant_id = `participant${participant_num}`;
+let participant_id = workerId || `participant${participant_num}`;
 let abstract_num = participant_num % 3;
 
 // determines the type of abstract arguments based off the randomly generated id number
@@ -28,7 +32,7 @@ function generateRandomString(length) {
 
 const completion_code = generateRandomString(3) + 'zvz' + generateRandomString(3);
 
-// create filename for d saving
+// create filename for saving
 const filename = `${participant_id}.csv`;
 
 // Initialize jsPsych
@@ -38,6 +42,11 @@ const jsPsych = initJsPsych({
     on_finish: function() {
         jsPsych.data.displayData();
     }
+});
+
+// Add workerId to all trials
+jsPsych.data.addProperties({
+    worker_id: participant_id
 });
 
 let timeline = [];
@@ -75,7 +84,6 @@ const consent = {
     }
 };
 
-// CHANGED: Updated instructions for logic arguments
 const instructions = {
     type: jsPsychHtmlButtonResponse,  
     stimulus: `
@@ -116,7 +124,6 @@ const instructions = {
     }
 };
 
-// CHANGED: Completely rewritten createTrials function
 function createTrials(argumentsData) {
     const experimentTrials = [];
     
@@ -132,10 +139,8 @@ function createTrials(argumentsData) {
             return;
         }
         
-        // Store the start time for the entire argument
         let argumentStartTime = null;
         
-        // Show Premise 1
         const premise1Trial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
@@ -166,7 +171,6 @@ function createTrials(argumentsData) {
             },
         };
         
-        // Show Premise 2
         const premise2Trial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
@@ -194,7 +198,6 @@ function createTrials(argumentsData) {
             },
         };
         
-        // Show conclusion and validity judgment
         const validityTrial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
@@ -218,7 +221,6 @@ function createTrials(argumentsData) {
                 form: item.form
             },
             on_finish: function(data) {
-                // Record total time for the entire argument
                 const totalTime = Date.now() - argumentStartTime;
                 data.participant_response = data.response === 0 ? 'valid' : 'invalid';
                 data.p1_rt = p1_rt,
@@ -256,7 +258,6 @@ function getFilteredData() {
     const judgmentTrials = allTrials.filter(trial => trial.custom_trial_type === 'validity_judgment');
     console.log(`Validity judgment trials found: ${judgmentTrials.length}`);
     
-    // if there's no data, return empty CSV
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
         return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time\n';
@@ -290,7 +291,6 @@ function getFilteredData() {
             console.log(`Added response row:`, row);
         });
         
-        // convert to CSV format
         const csvRows = rows.map(row => {
             return row.map(value => {
                 if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
@@ -325,6 +325,27 @@ const save_data = {
     }
 };
 
+// NEW: Qualtrics survey integration
+const qualtrics_survey = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <h2>Post-Experiment Survey</h2>
+            <p>Please complete a brief survey about your experience.</p>
+            <p>The survey will open in a new window.</p>
+            <p><strong>After completing the survey, return to this window and click "Continue" below.</strong></p>
+        </div>
+    `,
+    choices: ['Continue'],
+    data: {
+        trial_type: 'qualtrics_instruction'
+    },
+    on_start: function() {
+        const qualtricsURL = `https://uwmadison.co1.qualtrics.com/jfe/form/SV_0dnWlrTfrGaRhGu?workerId=${participant_id}`;
+        window.open(qualtricsURL, '_blank');
+    }
+};
+
 const final_screen = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
@@ -344,10 +365,9 @@ const final_screen = {
     }
 };
 
-// CHANGED: Renamed function and updated to load arguments
 async function loadArguments(filename) {
     try {
-        const response = await fetch(filename);  // CHANGED: filename
+        const response = await fetch(filename);
         const csvText = await response.text();
         
         const results = Papa.parse(csvText, {
@@ -367,7 +387,6 @@ async function loadArguments(filename) {
     }
 }
 
-// CHANGED: Updated to use loadArguments and createTrials
 async function runExperiment() {
     try {
         console.log('Starting experiment...');
@@ -399,6 +418,7 @@ async function runExperiment() {
             instructions,
             ...allTrials,
             save_data,
+            qualtrics_survey,  // NEW: Added Qualtrics survey
             final_screen
         ];
 
