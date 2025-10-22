@@ -333,37 +333,19 @@ const qualtrics_survey = {
             <h2>Post-Experiment Survey</h2>
             <p>Please complete a brief survey about your experience.</p>
             <p>The survey will open in a new window.</p>
-            <p><strong>After completing the survey, return to this window and click "Continue" below.</strong></p>
+            <p><strong>You will receive a completion code after completing the survey.</strong></p>
         </div>
     `,
     choices: ['Continue'],
     data: {
         trial_type: 'qualtrics_instruction'
     },
-    on_start: function() {
+    on_finish: function() {
         const qualtricsURL = `https://uwmadison.co1.qualtrics.com/jfe/form/SV_0dnWlrTfrGaRhGu?workerId=${participant_id}`;
         window.open(qualtricsURL, '_blank');
     }
 };
 
-const final_screen = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: `
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <h2>Thank you!</h2>
-            <p>You have completed the experiment.</p>
-            <p>Your completion code is: <strong style="font-size: 18px; color: #2563eb;">${completion_code}</strong></p>
-        </div>
-    `,
-    choices: ['Finish'],
-    data: {
-        trial_type: 'final',
-        completion_code: completion_code
-    },  
-    on_finish: function() {
-        window.location.href = `https://uwmadison.sona-systems.com/default.aspx?logout=Y`;
-    }
-};
 
 async function loadArguments(filename) {
     try {
@@ -419,7 +401,6 @@ async function runExperiment() {
             ...allTrials,
             save_data,
             qualtrics_survey,  // NEW: Added Qualtrics survey
-            final_screen
         ];
 
         console.log('Timeline initialized with', timeline.length, 'items');
