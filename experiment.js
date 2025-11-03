@@ -115,6 +115,23 @@ const instructions = {
                 <p><strong>Conclusion:</strong> Therefore, & is @.</p>
             </div>
             <p>The conclusion is <strong>valid</strong> because it logically follows from the premises.<p>
+            
+        </div>
+    `,
+    choices: ['Next'],
+    data: {
+        trial_type: 'instructions'
+    }
+};
+
+const pageTwo = {
+    type: jsPsychHtmlButtonResponse,  
+    stimulus: `
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2>Instructions</h2>
+            <p>Please don't rush through. 
+            Take your time to think through each statement and 
+            whether the conclusion <strong>logically</strong> follows.</p>
             <p><strong>Press 'Start' when you're ready to begin.</strong></p>
         </div>
     `,
@@ -122,7 +139,8 @@ const instructions = {
     data: {
         trial_type: 'instructions'
     }
-};
+
+}
 
 function createTrials(argumentsData) {
     const experimentTrials = [];
@@ -398,6 +416,7 @@ async function runExperiment() {
         timeline = [
             consent,
             instructions,
+            pageTwo,
             ...allTrials,
             save_data,
             qualtrics_survey,  // NEW: Added Qualtrics survey
