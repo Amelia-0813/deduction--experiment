@@ -249,6 +249,22 @@ shuffledStatements.forEach((statement, index) => {
     }
 });
 
+const save_data = {
+    type: jsPsychPipe,
+    action: "save",
+    experiment_id: "tBDDwCetE993",
+    filename: filename,
+    data_string: () => getFilteredData(), 
+    on_finish: function(data) {
+        if (data.success) {
+            console.log('Data saved successfully to DataPipe!');
+        } else {
+            console.error('Error saving to DataPipe:', data.message);
+        }
+    }
+};
+timeline.push(save_data);
+
 // =============================
 // THANK YOU SCREEN
 // =============================
