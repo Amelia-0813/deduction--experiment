@@ -1,0 +1,33 @@
+premise_1,premise_2,conclusion,group,form,validity,abstraction,plausibility
+All dolls have brown hair,Some trucks are dolls,Some trucks have brown hair,1,Darii,valid,concrete,implausilbe
+All doughnuts are cakes,Some crackers are doughnuts ,Some crackers are cake,1,Darii,valid,concrete,implausilbe
+All guitarists are baritone,Some piccolos are guitarists,Some piccolos are baritone,1,Darii,valid,concrete,implausilbe
+All jugglers are clowns,Some lions can juggle,Some lions are clowns,1,Darii,valid,concrete,implausilbe
+All school teachers are authors,Some school teachers are illiterate,Some authors are illterate,2,Datisi,valid,concrete,implausilbe
+All cups are mugs,Some cups are soft,Some soft things are mugs,2,Datisi,valid,concrete,implausilbe
+All horses are ponies,Some horses slither,Some slitherers are ponies,2,Datisi,valid,concrete,implausilbe
+All sculptures are statues,Some sculptures are documents,Some documents are statues,2,Datisi,valid,concrete,implausilbe
+Some mammals are frogs,All frogs are toads,Some toads are mammals,3,Dimatis,valid,concrete,implausilbe
+Some boats are cars,All cars are trucks,Some trucks are boats,3,Dimatis,valid,concrete,implausilbe
+Some only-children are siblings,All siblings are sisters,Some sisters are only-children,3,Dimatis,valid,concrete,implausilbe
+Some jackets are bags,All bags are suitcases,Some suitcases are jackets,3,Dimatis,valid,concrete,implausilbe
+Some fruits are carrots,All fruits are wheat,Some wheat is carrots,4,Disamis,valid,concrete,implausilbe
+Some weapons are healing,All weapons are swords,Some swords are healing,4,Disamis,valid,concrete,implausilbe
+Some sandwiches are beverages,All sandwiches are hamburgers,Some hamburgers are beverages,4,Disamis,valid,concrete,implausilbe
+Some guns are rope,All guns are rifles,Some rifles are rope,4,Disamis,valid,concrete,implausilbe
+All baritones are guitarists,Some piccolos are guitarists,Some piccolos are baritone,1,Darii,invalid,concrete,implausilbe
+All devices are computers,Some plants are computers,Some plants are devices,1,Darii,invalid,concrete,implausilbe
+All shirts are suits,Some shoes are suits,Some shoes are shirts,1,Darii,invalid,concrete,implausilbe
+All poultry is chicken,Some vegetables are chicken,Some vegetables are poultry,1,Darii,invalid,concrete,implausilbe
+All hotdogs are chilidogs,Some chilidogs are watermelon,Some watermelons are hotdogs,2,Datisi,invalid,concrete,implausilbe
+All pens are markers,Some markers are lighters,Some lighters are pens,2,Datisi,invalid,concrete,implausilbe
+All sculptures are paintings,Some paintings are audio,Some audios are sculptures,2,Datisi,invalid,concrete,implausilbe
+All speakers are subwoofers,Some subwoofers are drumsets,Some speakers are drumsets,2,Datisi,invalid,concrete,implausilbe
+Some pilots are luggage,All bags are luggage,Some bags are pilots,3,Dimatis,invalid,concrete,implausilbe
+Some mammals are frogs,All toads are frogs,Some toads are mammals,3,Dimatis,invalid,concrete,implausilbe
+Some beaches are offices,All rooms are offices,Some rooms are beaches,3,Dimatis,invalid,concrete,implausilbe
+Some anchovies are candy,All sweet things are candy,Some sweet things are anchovies,3,Dimatis,invalid,concrete,implausilbe
+Some gravel is buoyant,All roads are gravel,Some roads are buoyant,4,Disamis,invalid,concrete,implausilbe
+Some sandals are living,All shoes are sandals,Some shoes are living,4,Disamis,invalid,concrete,implausilbe
+Some stools are liquid,All chairs are stools,Some chairs are liquid,4,Disamis,invalid,concrete,implausilbe
+Some mugs are soft,All cups are mugs,Some cups are soft,4,Disamis,invalid,concrete,implausilbe

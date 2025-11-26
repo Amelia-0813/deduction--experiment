@@ -6,6 +6,7 @@ const workerId = urlParams.get('workerId');
 let participant_num = Math.floor(Math.random() * 999) + 1;
 let participant_id = workerId || `participant${participant_num}`;
 let abstract_num = participant_num % 3;
+let condition_num = participant_num % 2;
 
 // determines the type of abstract arguments based off the randomly generated id number
 switch (abstract_num) {
@@ -17,6 +18,15 @@ switch (abstract_num) {
         break;
     case 2:
         abstract_type = 'abstract_symbol_nonce.csv'
+        break;
+}
+
+switch (condition_num) {
+    case 0:
+        condition = 'condition_1.csv'
+        break;
+    case 1:
+        condition = 'condition_2.csv'
         break;
 }
 

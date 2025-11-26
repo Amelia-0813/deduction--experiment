@@ -1,0 +1,65 @@
+premise_1,premise_2,conclusion,group,form,validity,abstraction,plausibility,pair
+All dolls are man made,Some toys are dolls ,Some toys are man made,1,Darii,valid,concrete,plausible,1
+All dolls have brown hair,Some trucks are dolls,Some trucks have brown hair,1,Darii,valid,concrete,implausible,1
+All doughnuts are sugary ,Some pastries are doughnuts ,Some pastries are sugary,1,Darii,valid,concrete,plausible,2
+All doughnuts are cakes,Some crackers are doughnuts ,Some crackers are cake,1,Darii,valid,concrete,implausible,2
+All singers are vocalists ,Some guitarists are singers,Some guitarists are vocalists,1,Darii,valid,concrete,plausible,3
+All guitarists are baritone,Some piccolos are guitarists,Some piccolos are baritone,1,Darii,valid,concrete,implausible,3
+All clowns can juggle ,Some circus performers are clowns ,Some circus performers can juggle,1,Darii,valid,concrete,plausible,4
+All jugglers are clowns,Some lions can juggle,Some lions are clowns,1,Darii,valid,concrete,implausible,4
+All poets are writers ,Some poets are teachers,Some teachers are writers,2,Datisi,valid,concrete,plausible,5
+All school teachers are authors,Some school teachers are illiterate,Some authors are illiterate,2,Datisi,valid,concrete,implausible,5
+All mugs are cups ,Some mugs are ceramics,Some ceramics are cups ,2,Datisi,valid,concrete,plausible,6
+All cups are mugs,Some cups are soft,Some soft things are mugs,2,Datisi,valid,concrete,implausible,6
+All ponies neigh,Some ponies are thoroughbreds,Some thoroughbreds neigh,2,Datisi,valid,concrete,plausible,7
+All horses are ponies,Some horses are slithery,Some slithery things are ponies,2,Datisi,valid,concrete,implausible,7
+All statues are sculptures,Some statues are bronzes,Some bronzes are sculptures,2,Datisi,valid,concrete,plausible,8
+All sculptures are statues,Some sculptures are documents,Some documents are statues,2,Datisi,valid,concrete,implausible,8
+Some criminals are liars ,All liars are humans,Some humans are criminals ,3,Dimatis,valid,concrete,plausible,n/a 9
+Some mammals are frogs,All frogs are toads,Some toads are mammals,3,Dimatis,valid,concrete,implausible,n/a 9
+Some cars are trucks ,All trucks are vehicles,Some vehicles are cars ,3,Dimatis,valid,concrete,plausible,10
+Some boats are cars,All cars are trucks,Some trucks are boats,3,Dimatis,valid,concrete,implausible,10
+Some parents are widows ,All widows are women,Some women are parents,3,Dimatis,valid,concrete,plausible,n/a 11
+Some only-children are siblings,All siblings are sisters,Some sisters are only-children,3,Dimatis,valid,concrete,implausible,n/a 11
+Some jackets are bags,All bags are suitcases,Some suitcases are jackets,3,Dimatis,valid,concrete,implausible,12
+Some bags are suitcases,All suitcases are pieces of luggage,Some pieces of luggage are bags,3,Dimatis,valid,concrete,plausible,12
+Some grapes are red ,All grapes are fruits ,Some fruits are red ,4,Disamis,valid,concrete,plausible,13
+Some fruits are carrots,All fruits are wheat,Some wheat is carrots,4,Disamis,valid,concrete,implausible,13
+Some swords are decorative,All swords are weapons ,Some weapons are decorative ,4,Disamis,valid,concrete,plausible,14
+Some weapons are healing,All weapons are swords,Some swords are healing,4,Disamis,valid,concrete,implausible,14
+Some burgers are overcooked ,All burgers are sandwiches,Some sandwiches are overcooked ,4,Disamis,valid,concrete,plausible,15
+Some sandwiches are beverages,All sandwiches are hamburgers,Some hamburgers are beverages,4,Disamis,valid,concrete,implausible,15
+Some rifles are for hunting,All rifles are guns ,Some guns are for hunting,4,Disamis,valid,concrete,plausible,16
+Some guns are rope,All guns are rifles,Some rifles are rope,4,Disamis,valid,concrete,implausible,16
+All vocalists are singers,Some guitarists are singers,Some guitarists are vocalists,1,Darii,invalid,concrete,plausible,17
+All baritones are guitarists,Some piccolos are guitarists,Some piccolos are baritone,1,Darii,invalid,concrete,implausible,17
+All computers run code,Some calculators run code,Some calculators are computers,1,Darii,invalid,concrete,plausible,18
+All devices are computers,Some plants are computers,Some plants are devices,1,Darii,invalid,concrete,implausible,18
+All suit pieces are made from fabric,Some shirts are made from fabric,Some shirts are suit pieces,1,Darii,invalid,concrete,plausible,19
+All shirts are suits,Some shoes are suits,Some shoes are shirts,1,Darii,invalid,concrete,implausible,19
+All baby chicks have down,Some birds have down,Some birds are baby chicks,1,Darii,invalid,concrete,plausible,n/a 20
+All poultry is chicken,Some vegetables are chicken,Some vegetables are poultry,1,Darii,invalid,concrete,implausible,n/a 20
+All chili dogs are hotdogs,Some hotdogs are grilled,Some grilled things are chili dogs,2,Datisi,invalid,concrete,plausible,21
+All hotdogs are chilidogs,Some chilidogs are watermelon,Some watermelons are hotdogs,2,Datisi,invalid,concrete,implausible,21
+All pens are writing utensils,Some writing utensils use black ink,Some things that use black ink are pens,2,Datisi,invalid,concrete,plausible,22
+All pens are markers,Some markers are lighters,Some lighters are pens,2,Datisi,invalid,concrete,implausible,22
+All paintings are framed,Some framed things are portraits,Some portraits are paintings,2,Datisi,invalid,concrete,plausible,23
+All sculptures are paintings,Some paintings are audio,Some audios are sculptures,2,Datisi,invalid,concrete,implausible,23
+All speakers are hardware,Some hardware produces audio,Some speakers produce audio,2,Datisi,invalid,concrete,plausible,24
+All speakers are subwoofers,Some subwoofers are drum sets,Some speakers are drum sets,2,Datisi,invalid,concrete,implausible,24
+Some bags are pieces of luggage,All suitcases are pieces of luggage,Some suitcases are bags,3,Dimatis,invalid,concrete,plausible,25
+Some pilots are luggage,All bags are luggage,Some bags are pilots,3,Dimatis,invalid,concrete,implausible,25
+Some criminals are liars,All humans are liars,Some humans are criminals,3,Dimatis,invalid,concrete,plausible,n/a 26
+Some mammals are frogs,All toads are frogs,Some toads are mammals,3,Dimatis,invalid,concrete,implausible,n/a 26
+Some buildings are workspaces,All offices are workspaces,Some offices are buildings,3,Dimatis,invalid,concrete,plausible,27
+Some beaches are offices,All rooms are offices,Some rooms are beaches,3,Dimatis,invalid,concrete,implausible,27
+Some desserts are sweet,All candy is sweet,Some candy is dessert,3,Dimatis,invalid,concrete,plausible,28
+Some anchovies are candy,All sweet things are candy,Some sweet things are anchovies,3,Dimatis,invalid,concrete,implausible,28
+Some paths are straight,All roads are paths,Some roads are straight,4,Disamis,invalid,concrete,plausible,29
+Some gravel is buoyant,All roads are gravel,Some roads are buoyant,4,Disamis,invalid,concrete,implausible,29
+Some footwear are high heels,All shoes are footwear,Some shoes are high heels,4,Disamis,invalid,concrete,plausible,30
+Some sandals are living,All shoes are sandals,Some shoes are living,4,Disamis,invalid,concrete,implausible,30
+Some chairs have four legs,All things you can sit in are chairs,Some things you can sit in have four legs,4,Disamis,invalid,concrete,plausible,31
+Some stools are liquid,All chairs are stools,Some chairs are liquid,4,Disamis,invalid,concrete,implausible,31
+Some containers are glasses,All cups are containers,Some cups are glasses,4,Disamis,invalid,concrete,plausible,32
+Some mugs are soft,All cups are mugs,Some cups are soft,4,Disamis,invalid,concrete,implausible,32
