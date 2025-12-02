@@ -1,0 +1,33 @@
+premise_1,premise_2,conclusion,group,form,validity,abstraction,plausibility,pair
+All dolls are man made,Some toys are dolls ,Some toys are man made,1,Darii,valid,concrete,plausible,1
+All doughnuts are cakes,Some crackers are doughnuts ,Some crackers are cake,1,Darii,valid,concrete,implausible,2
+All singers are vocalists ,Some guitarists are singers,Some guitarists are vocalists,1,Darii,valid,concrete,plausible,3
+All jugglers are clowns,Some lions can juggle,Some lions are clowns,1,Darii,valid,concrete,implausible,4
+All poets are writers ,Some poets are teachers,Some teachers are writers,2,Datisi,valid,concrete,plausible,5
+All cups are mugs,Some cups are bottles,Some bottles are mugs,2,Datisi,valid,concrete,implausible,6
+All ponies neigh,Some ponies are thoroughbreds,Some thoroughbreds neigh,2,Datisi,valid,concrete,plausible,7
+All sculptures are statues,Some sculptures are graffiti,Some graffiti are statues,2,Datisi,valid,concrete,implausible,8
+Some criminals are liars ,All liars are humans,Some humans are criminals ,3,Dimatis,valid,concrete,plausible,9
+Some boats are cars,All cars are trucks,Some trucks are boats,3,Dimatis,valid,concrete,implausible,10
+Some parents are widows ,All widows are women,Some women are parents,3,Dimatis,valid,concrete,plausible,11
+Some purses are baskets,All baskets are purses,Some bags are baskets,3,Dimatis,valid,concrete,implausible,12
+Some grapes are red ,All grapes are fruits ,Some fruits are red ,4,Disamis,valid,concrete,plausible,13
+Some weapons are healing,All weapons are swords,Some swords are healing,4,Disamis,valid,concrete,implausible,14
+Some burgers are overcooked ,All burgers are sandwiches,Some sandwiches are overcooked ,4,Disamis,valid,concrete,plausible,15
+Some guns are bullets ,All guns are rifles,Some rifles are bullets ,4,Disamis,valid,concrete,implausible,16
+All vocalists are singers,Some guitarists are singers,Some guitarists are vocalists,1,Darii,invalid,concrete,plausible,17
+All devices are computers,Some keyboards are computers,Some keyboards are devices,1,Darii,invalid,concrete,implausible,18
+All suit pieces are made from fabric,Some shirts are made from fabric,Some shirts are suit pieces,1,Darii,invalid,concrete,plausible,19
+All baby chicks have fur,Some reptiles have fur,Some reptiles are baby chicks,1,Darii,invalid,concrete,implausible,20
+All chili dogs are hotdogs,Some hotdogs are grilled,Some grilled things are chili dogs,2,Datisi,invalid,concrete,plausible,21
+All pens are markers,Some markers are lighters,Some lighters are pens,2,Datisi,invalid,concrete,implausible,22
+All paintings are framed,Some framed things are portraits,Some portraits are paintings,2,Datisi,invalid,concrete,plausible,23
+All speakers are subwoofers,Some subwoofers are drum sets,Some speakers are drum sets,2,Datisi,invalid,concrete,implausible,24
+Some bags are pieces of luggage,All suitcases are pieces of luggage,Some suitcases are bags,3,Dimatis,invalid,concrete,plausible,25
+Some judges are liars,All liars are criminals ,Some criminals are judges,3,Dimatis,invalid,concrete,implausible,26
+Some buildings are workspaces,All offices are workspaces,Some offices are buildings,3,Dimatis,invalid,concrete,plausible,27
+Some anchovies are candy,All sweet snacks are candy,Some sweet snacks are anchovies,3,Dimatis,invalid,concrete,implausible,28
+Some paths are straight,All roads are paths,Some roads are straight,4,Disamis,invalid,concrete,plausible,29
+Some sandals are living,All shoes are sandals,Some shoes are living,4,Disamis,invalid,concrete,implausible,30
+Some chairs have four legs,All things you can sit in are chairs,Some things you can sit in have four legs,4,Disamis,invalid,concrete,plausible,31
+Some cups are napkins,All containers are cups,Some containers are napkins,4,Disamis,invalid,concrete,implausible,32

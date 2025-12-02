@@ -254,7 +254,7 @@ const save_data = {
     action: "save",
     experiment_id: "tBDDwCetE993",
     filename: filename,
-    data_string: () => getFilteredData(), 
+    data_string: () => jsPsych.data.get().csv(), 
     on_finish: function(data) {
         if (data.success) {
             console.log('Data saved successfully to DataPipe!');

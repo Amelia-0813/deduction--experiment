@@ -189,7 +189,8 @@ function createTrials(argumentsData) {
                 conclusion: conclusion,
                 correct_validity: item.validity,
                 abstraction: item.abstraction,
-                form: item.form
+                form: item.form,
+                plausibility: item.plausibility
             },
             on_start: function() {
                 argumentStartTime = Date.now();
@@ -219,7 +220,8 @@ function createTrials(argumentsData) {
                 conclusion: conclusion,
                 correct_validity: item.validity,
                 abstraction: item.abstraction,
-                form: item.form
+                form: item.form,
+                plausibility: item.plausibility
             },
             on_finish: function(data) {
                 p2_rt = Math.round(data.rt)
@@ -246,7 +248,8 @@ function createTrials(argumentsData) {
                 conclusion: conclusion,
                 correct_validity: item.validity,
                 abstraction: item.abstraction,
-                form: item.form
+                form: item.form,
+                plausibility: item.plausibility
             },
             on_finish: function(data) {
                 const totalTime = Date.now() - argumentStartTime;
@@ -265,6 +268,7 @@ function createTrials(argumentsData) {
                     is_correct: data.is_correct,
                     abstraction: data.abstraction,
                     form: data.form,
+                    plausibility: item.plausibility,
                     p1_rt,
                     p2_rt,
                     rt: data.response_rt,
@@ -288,11 +292,11 @@ function getFilteredData() {
     
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,response_rt,total_argument_time\n';
     }
     
     try {
-        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time';
+        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,response_rt,total_argument_time';
         const rows = [];
         
         judgmentTrials.forEach((trial, trialIndex) => {
@@ -309,6 +313,7 @@ function getFilteredData() {
                 trial.is_correct !== undefined ? trial.is_correct : '',
                 trial.form || '',
                 trial.abstraction || '',
+                trial.plausibility || '',
                 Math.round(trial.p1_rt || 0),
                 Math.round(trial.p2_rt || 0),
                 Math.round(trial.response_rt || 0),
@@ -334,7 +339,7 @@ function getFilteredData() {
         return finalCSV;
     } catch (error) {
         console.error("Error in getFilteredData:", error);
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,p1_rt,p2_rt,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
     }
 }
 
@@ -401,7 +406,8 @@ async function runExperiment() {
     try {
         console.log('Starting experiment...');
         console.log('Participant ID:', participant_id);
-        console.log('Abstract type:', abstract_type)
+        console.log('Abstract type:', abstract_type);
+        console.log('Condition: ', condition);
         console.log('Completion code:', completion_code);
 
         const abstractData = await loadArguments(abstract_type);
@@ -411,7 +417,7 @@ async function runExperiment() {
             throw new Error('No arguments loaded from abstract file');  
         }
 
-        const concreteData = await loadArguments('concrete.csv');  
+        const concreteData = await loadArguments(condition);  
         console.log('Loaded concrete arguments:', concreteData.length); 
         
         if (concreteData.length === 0) {  
