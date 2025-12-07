@@ -161,6 +161,7 @@ function createTrials(argumentsData) {
         const conclusion = item.conclusion;
         p1_rt = 0;
         p2_rt = 0;
+        conc_rt = 0;
         
         if (!premise1 || !premise2 || !conclusion) {
             console.warn('Trial missing data:', item);
@@ -311,6 +312,7 @@ function createTrials(argumentsData) {
                 data.participant_response = data.response === 0 ? 'valid' : 'invalid';
                 data.p1_rt = p1_rt,
                 data.p2_rt = p2_rt,
+                data.conc_rt = conc_rt,
                 data.response_rt = Math.round(data.rt);
                 data.total_argument_time = Math.round(totalTime);
                 data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
@@ -326,6 +328,7 @@ function createTrials(argumentsData) {
                     plausibility: item.plausibility,
                     p1_rt,
                     p2_rt,
+                    conc_rt,
                     rt: data.response_rt,
                     total_time: data.total_argument_time
                 });
@@ -358,11 +361,11 @@ function getFilteredData() {
     
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,response_rt,total_argument_time\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,conc_rt,response_rt,total_argument_time\n';
     }
     
     try {
-        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,response_rt,total_argument_time';
+        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,conc_rt,response_rt,total_argument_time';
         const rows = [];
         
         judgmentTrials.forEach((trial, trialIndex) => {
@@ -382,6 +385,7 @@ function getFilteredData() {
                 trial.plausibility || '',
                 Math.round(trial.p1_rt || 0),
                 Math.round(trial.p2_rt || 0),
+                Math.round(trial.conc_rt || 0),
                 Math.round(trial.response_rt || 0),
                 Math.round(trial.total_argument_time || 0)
             ];
@@ -405,7 +409,7 @@ function getFilteredData() {
         return finalCSV;
     } catch (error) {
         console.error("Error in getFilteredData:", error);
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,conc_rt,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
     }
 }
 
