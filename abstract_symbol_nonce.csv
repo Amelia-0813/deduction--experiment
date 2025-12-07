@@ -7,7 +7,7 @@ All $ are #,Some $ are &,Some & are #,2,Datisi,valid,symbol
 All & are %,Some % are #,Some # are &,2,Datisi,invalid,symbol
 All shreggs are gwerms,Some shreggs are spleashes,Some spleashes are gwerms,2,Datisi,valid,nonce
 All cralts are plieks,Some plieks are lebbs,Some lebbs are cralts,2,Datisi,invalid,nonce
-Some & are #,All % are $,Some $ are &,3,Dimatis,valid,symbol
+Some & are #,All # are $,Some $ are &,3,Dimatis,valid,symbol
 Some $ are %,All @ are %,Some @ are $,3,Dimatis,invalid,symbol
 Some yolves are whinges,All whinges are clurps,Some clurps are yolves,3,Dimatis,valid,nonce
 Some twoops are sonches,All dwaints are sonches,Some dwaints are twoops,3,Dimatis,invalid,nocne
@@ -15,3 +15,7 @@ Some @ are %,All @ are $,Some $ are %,4,Disamis,valid,symbol
 Some & are @,All % are &,Some % are @,4,Disamis,invalid,symbol
 Some swawks are draphs,All swawks are kisques,Some kisques are draphs,4,Disamis,valid,nonce
 Some bloises are zooths,All plives are bloises,Some plives are zooths,4,Disamis,invalid,nonce
+Kazz is in brusp,Strull is in brusp,"Therefore, kazz is in strull",5,Sunny,invalid,nonce
+Thinch is in blaith,Blaith is in swern,"Therefore, thinch is in swern",5,Sunny,valid,nonce
+% is in &,$ is in &,"Therefore, % is in $",5,Sunny,invalid,symbol
+# is in %,% is in @,"Therefore, # is in @",5,Sunny,valid,symbol

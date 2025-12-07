@@ -15,3 +15,7 @@ Some swawks are draphs,All swawks are kisques,Some kisques are draphs,4,Disamis,
 Some bloises are zooths,All plives are bloises,Some plives are zooths,4,Disamis,invalid,nonce
 Some H are D,All H are K,Some K are D,4,Disamis,valid,letter
 Some P are B,All G are B,Some G are P,4,Disamis,invalid,letter
+S is in P,Q is in P,"Therefore, S is in Q",5,Sunny,invalid,letter
+R is in H,H is in K,"Therefore, R is in K",5,Sunny,valid,letter
+Kazz is in brusp,Strull is in brusp,"Therefore, kazz is in strull",5,Sunny,invalid,nonce
+Thinch is in blaith,Blaith is in swern,"Therefore, thinch is in swern",5,Sunny,valid,nonce

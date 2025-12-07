@@ -1,0 +1,11 @@
+premise_1,premise_2,conclusion,group,form,validity,abstraction,plausibility
+S is in P,Q is in P,"Therefore, S is in Q",5,Sunny,invalid,letter,
+R is in H,H is in K,"Therefore, R is in K",5,Sunny,valid,letter,
+kazz is in brusp,strull is in brusp,"Therefore, kazz is in strull",5,Sunny,invalid,nonce,
+thinch is in blaith,blaith is in swern,"Therefore, thinch is in swern",5,Sunny,valid,nonce,
+% is in &,$ is in &,"Therefore, % is in $",5,Sunny,invalid,symbol,
+# is in %,% is in @,"Therefore, # is in @",5,Sunny,valid,symbol,
+Pittsburgh is in Pennsylvania,Philadelphia is in Pennsylvania,Pittsburgh is in Philadelphia,,,invalid,,implausible
+Pittsburgh is in Pennsylvania,Pennsylvania is in the United States,"Therefore, Pittsburgh is in the United States",,,valid,,plausible
+Austin is in the United States,Texas is in the United States,"Therefore, Austin is in Texas",,,invalid,,plausible
+The Vatican is in Nevada,Nevada is in Hawaii,"Therefore, the Vatican is in Hawaii",,,valid,,implausible

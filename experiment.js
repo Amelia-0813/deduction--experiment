@@ -100,7 +100,7 @@ const instructions = {
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Instructions</h2>
             <p>In this experiment, you will evaluate logical arguments.</p>
-            <p>Each argument consists of two premises and a conclusion.</p>
+            <p>Each argument consists of two premises and a conclusion. You should assume that the premises are true, and judge if the conclusion logically follows.</p>
             <p>The premises and conclusion will appear one at a time. Click the button to advance to the next statement.</p>
             <p>After reading all statements, you will be asked whether the conclusion logically follows from the premises.</p>
             <p><strong>Valid Example:</strong></p>
@@ -109,14 +109,14 @@ const instructions = {
                 <p><strong>Premise 2:</strong> Fido is a dog.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>In this case, the conclusion is <strong>valid</strong> because it logically follows from the premises.</p>
+            <p>In this case, the conclusion logically follows from the premises.</p>
             <p><strong>Invalid Example:</strong></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All mammals are animals.</p>
                 <p><strong>Premise 2:</strong> Fido is an animal.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>In this case, the conclusion is <strong>invalid</strong> because it does not follow from the premises. 
+            <p>In this case, the conclusion does not follow from the premises. 
             <p>The first set of trials will use nonsense words and symbols. Please do your best to focus on the logic of the argument.<p>
             <p><strong>Abstract Example:</strong></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
@@ -124,7 +124,7 @@ const instructions = {
                 <p><strong>Premise 2:</strong> & is $.</p>
                 <p><strong>Conclusion:</strong> Therefore, & is @.</p>
             </div>
-            <p>The conclusion is <strong>valid</strong> because it logically follows from the premises.<p>
+            <p>This conclusion logically follows from the premises.<p>
             
         </div>
     `,
@@ -139,9 +139,9 @@ const pageTwo = {
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Instructions</h2>
-            <p>Please don't rush through. 
-            Take your time to think through each statement and 
-            whether the conclusion <strong>logically</strong> follows.</p>
+            <p>
+            Take your time to think through each statement. Once you see each statement, click <strong>Yes</strong> if 
+            the conclusion logically follows, and <strong>No</strong> if it does not follow.
             <p><strong>Press 'Start' when you're ready to begin.</strong></p>
         </div>
     `,
@@ -168,14 +168,35 @@ function createTrials(argumentsData) {
         }
         
         let argumentStartTime = null;
+
+        timeline.push({
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: `
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
+                    </div>
+                </div>
+        `,
+        choices: "ALL_KEYS",
+        data: {
+            task: 'await_premise1',
+            trial_number: index
+        }
+    });
         
         const premise1Trial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #f8f9fa; border-radius: 8px;">
-                        <p style="font-weight: bold; color: #666; margin-bottom: 15px;">Premise 1:</p>
-                        <p style="font-size: 28px; line-height: 1.6;">${premise1}</p>
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content visible">${premise1}</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
                     </div>
                 </div>
             `,
@@ -203,10 +224,12 @@ function createTrials(argumentsData) {
         const premise2Trial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #f8f9fa; border-radius: 8px;">
-                        <p style="font-weight: bold; color: #666; margin-bottom: 15px;">Premise 2:</p>
-                        <p style="font-size: 28px; line-height: 1.6;">${premise2}</p>
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${premise2}</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
                     </div>
                 </div>
             `,
@@ -227,18 +250,50 @@ function createTrials(argumentsData) {
                 p2_rt = Math.round(data.rt)
             },
         };
+
+        const conclusionTrial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content visible">${conclusion}</span></div>
+                    </div>
+                </div>
+            `, 
+            choices: ['Next'],
+            data: {
+                custom_trial_type: 'conclusion',
+                participant_id: participant_id,
+                trial_number: index + 1,
+                premise1: premise1,
+                premise2: premise2,
+                conclusion: conclusion,
+                correct_validity: item.validity,
+                abstraction: item.abstraction,
+                form: item.form,
+                plausibility: item.plausibility
+            },
+            on_finish: function(data) {
+                conc_rt = Math.round(data.rt)
+            },
+        };
         
         const validityTrial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <div style="font-size: 24px; margin: 50px 0; padding: 30px; background-color: #fff3cd; border-radius: 8px;">
-                        <p style="font-weight: bold; color: #856404; margin-bottom: 15px;">Conclusion:</p>
-                        <p style="font-size: 28px; line-height: 1.6;">${conclusion}</p>
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
                     </div>
                 </div>
             `,
-            choices: ['Valid', 'Invalid'],
+            choices: ['Yes', 'No'],
             data: {
                 custom_trial_type: 'validity_judgment',
                 participant_id: participant_id,
@@ -276,8 +331,19 @@ function createTrials(argumentsData) {
                 });
             }
         };
+
+        const next = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: "",
+            choices: ['Next'],
+            button_html: '<button class="jspsych-btn next-btn">%choice%</button>',
+            data: {
+                task: 'next_button',
+                trial_index: index
+            }
+        };
         
-        experimentTrials.push(premise1Trial, premise2Trial, validityTrial);
+        experimentTrials.push(premise1Trial, premise2Trial, conclusionTrial, validityTrial, next);
     });
     
     return experimentTrials;
@@ -346,7 +412,7 @@ function getFilteredData() {
 const save_data = {
     type: jsPsychPipe,
     action: "save",
-    experiment_id: "nBYrlrEjPb10",
+    experiment_id: "l0DBLhAX64PU",
     filename: filename,
     data_string: () => getFilteredData(), 
     on_finish: function(data) {
@@ -402,6 +468,111 @@ async function loadArguments(filename) {
     }
 }
 
+const styles = `
+    <style>
+        .trial-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .question {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .statement-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .statement {
+            font-size: 20px;
+            padding: 15px 25px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            min-width: 500px;
+            text-align: left;
+        }
+        
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .content {
+            margin-left: 10px;
+            color: #888;
+        }
+        
+        .content.visible {
+            color: #000;
+            font-weight: 500;
+        }
+        
+        .instruction {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        
+        .response-btn {
+            font-size: 20px;
+            padding: 15px 50px;
+            margin: 10px;
+            min-width: 120px;
+        }
+        
+        .next-btn {
+            font-size: 18px;
+            padding: 12px 40px;
+            margin-top: 20px;
+        }
+        
+        .begin-btn {
+            font-size: 20px;
+            padding: 15px 50px;
+        }
+        
+        .instructions {
+            max-width: 600px;
+            text-align: left;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .instructions h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .instructions ul {
+            margin: 20px 0;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+        }
+        
+        .feedback-text {
+            font-size: 20px;
+            color: #666;
+        }
+    </style>
+`;
+
+// Inject styles into document
+document.head.insertAdjacentHTML('beforeend', styles);
+
+
 async function runExperiment() {
     try {
         console.log('Starting experiment...');
@@ -435,7 +606,7 @@ async function runExperiment() {
             pageTwo,
             ...allTrials,
             save_data,
-            qualtrics_survey,  // NEW: Added Qualtrics survey
+            qualtrics_survey,  
         ];
 
         console.log('Timeline initialized with', timeline.length, 'items');
