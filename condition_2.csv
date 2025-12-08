@@ -1,21 +1,21 @@
 premise_1,premise_2,conclusion,group,form,validity,abstraction,plausibility,pair
 All dolls have brown hair,Some trucks are dolls,Some trucks have brown hair,1,Darii,valid,concrete,implausible,1
-All doughnuts are sugary ,Some pastries are doughnuts ,Some pastries are sugary,1,Darii,valid,concrete,plausible,2
+All doughnuts are sugary,Some pastries are doughnuts,Some pastries are sugary,1,Darii,valid,concrete,plausible,2
 All guitarists are baritones,Some piccolos are guitarists,Some piccolos are baritones,1,Darii,valid,concrete,implausible,3
-All clowns can juggle ,Some circus performers are clowns ,Some circus performers can juggle,1,Darii,valid,concrete,plausible,4
+All clowns can juggle,Some circus performers are clowns,Some circus performers can juggle,1,Darii,valid,concrete,plausible,4
 All school teachers are authors,Some school teachers are illiterate,Some authors are illiterate,2,Datisi,valid,concrete,implausible,5
-All mugs are cups ,Some mugs are ceramics,Some ceramics are cups ,2,Datisi,valid,concrete,plausible,6
+All mugs are cups,Some mugs are ceramics,Some ceramics are cups,2,Datisi,valid,concrete,plausible,6
 All horses are ponies,Some horses crawl,Some things that crawl are ponies,2,Datisi,valid,concrete,implausible,7
 All statues are sculptures,Some statues are bronzes,Some bronzes are sculptures,2,Datisi,valid,concrete,plausible,8
 Some infants are liars,All liars are felons,Some felons are infants,3,Dimatis,valid,concrete,implausible,9
-Some cars are trucks ,All trucks are vehicles,Some vehicles are cars ,3,Dimatis,valid,concrete,plausible,10
-Some widows are infants ,All infants are men,Some men are widows,3,Dimatis,valid,concrete,implausible,11
+Some cars are trucks,All trucks are vehicles,Some vehicles are cars,3,Dimatis,valid,concrete,plausible,10
+Some widows are infants,All infants are men,Some men are widows,3,Dimatis,valid,concrete,implausible,11
 Some bags are suitcases,All suitcases are pieces of luggage,Some pieces of luggage are bags,3,Dimatis,valid,concrete,plausible,12
 Some fruits are carrots,All fruits are wheat,Some wheat is carrot,4,Disamis,valid,concrete,implausible,13
-Some swords are decorative,All swords are weapons ,Some weapons are decorative ,4,Disamis,valid,concrete,plausible,14
+Some swords are decorative,All swords are weapons,Some weapons are decorative,4,Disamis,valid,concrete,plausible,14
 Some sandwiches are beverages,All sandwiches are hamburgers,Some hamburgers are beverages,4,Disamis,valid,concrete,implausible,15
-Some rifles are for hunting,All rifles are guns ,Some guns are for hunting,4,Disamis,valid,concrete,plausible,16
-All vocalists are guitarists,Some piccolos are guitarists,Some piccolos are vocalists ,1,Darii,invalid,concrete,implausible,17
+Some rifles are for hunting,All rifles are guns,Some guns are for hunting,4,Disamis,valid,concrete,plausible,16
+All vocalists are guitarists,Some piccolos are guitarists,Some piccolos are vocalists,1,Darii,invalid,concrete,implausible,17
 All computers run code,Some calculators run code,Some calculators are computers,1,Darii,invalid,concrete,plausible,18
 All shirts are suits,Some shoes are suits,Some shoes are shirts,1,Darii,invalid,concrete,implausible,19
 All baby chicks have down feathers,Some birds have down feathers,Some birds are baby chicks,1,Darii,invalid,concrete,plausible,20
@@ -23,7 +23,7 @@ All hotdogs are chilidogs,Some chilidogs are tacos,Some tacos are hotdogs,2,Dati
 All pens are writing utensils,Some writing utensils use black ink,Some things that use black ink are pens,2,Datisi,invalid,concrete,plausible,22
 All sculptures are paintings,Some paintings are sound,Some sounds are sculptures,2,Datisi,invalid,concrete,implausible,23
 All speakers are hardware,Some hardware produces audio,Some speakers produce audio,2,Datisi,invalid,concrete,plausible,24
-Some passengers are luggage,All bags are luggage,Some bags are passengers ,3,Dimatis,invalid,concrete,implausible,25
+Some passengers are luggage,All bags are luggage,Some bags are passengers,3,Dimatis,invalid,concrete,implausible,25
 Some criminals are liars,All humans are liars,Some humans are criminals,3,Dimatis,invalid,concrete,plausible,26
 Some beaches are offices,All rooms are offices,Some rooms are beaches,3,Dimatis,invalid,concrete,implausible,27
 Some desserts are sweet,All candy is sweet,Some candy is dessert,3,Dimatis,invalid,concrete,plausible,28

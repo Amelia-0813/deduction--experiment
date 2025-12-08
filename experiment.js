@@ -23,10 +23,10 @@ switch (abstract_num) {
 
 switch (condition_num) {
     case 0:
-        condition = 'condition_1.csv'
+        condition = 'condition_1_balanced.csv'
         break;
     case 1:
-        condition = 'condition_2.csv'
+        condition = 'condition_2_balanced.csv'
         break;
 }
 
@@ -116,7 +116,25 @@ const instructions = {
                 <p><strong>Premise 2:</strong> Fido is an animal.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>In this case, the conclusion does not follow from the premises. 
+            <p>In this case, the conclusion does not follow from the premises. Just because Fido is an animal does not mean he is a mammal. 
+            <p>It is important to note: a conclusion can still <strong>logically</strong> follow from the premises when any of the given statements are false. </p>
+            <p><strong>Valid Example:</strong></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All birds can fly.</p>
+                <p><strong>Premise 2:</strong> Some pigs are birds.</p>
+                <p><strong>Conclusion:</strong>  Therefore, pigs can fly.</p>
+            </div>
+            <p> All three statements in this argument are false, but if we <strong>assume</strong> the premises are true, for the sake of the argument, it would follow that <strong>pigs can fly</strong>. 
+            In this case, pigs are birds, and all birds fly. You should do you best to assume all premises are 
+            true, even when they obviously are not. Evaluate the truth of the conclusion asumming the premises are true.</p>
+            <p><strong>Invalid Example:</strong></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All stars are planets.</p>
+                <p><strong>Premise 2:</strong> The sun is a planet.</p>
+                <p><strong>Conclusion:</strong> Therefore, the sun is a star.</p>
+            </div>
+            <p>In this case, the conclusion is actually <strong>true</strong>, but the conclusion <strong>does not</strong> follow logically. Even if all stars were planets, and the sun was a planet, 
+            assuming "all stars are planets" does not mean all planets are stars. It could still be the case that the sun <strong>is not</strong> a star.</p>
             <p>The first set of trials will use nonsense words and symbols. Please do your best to focus on the logic of the argument.<p>
             <p><strong>Abstract Example:</strong></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
@@ -124,7 +142,7 @@ const instructions = {
                 <p><strong>Premise 2:</strong> & is $.</p>
                 <p><strong>Conclusion:</strong> Therefore, & is @.</p>
             </div>
-            <p>This conclusion logically follows from the premises.<p>
+            <p>This conclusion logically follows from the premises.</p>
             
         </div>
     `,
@@ -174,7 +192,6 @@ function createTrials(argumentsData) {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: `
                 <div class="trial-container">
-                    <div class="question">Does the conclusion follow from the premises?</div>
                     <div class="statement-area">
                         <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
                         <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
@@ -193,7 +210,6 @@ function createTrials(argumentsData) {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div class="trial-container">
-                    <div class="question">Does the conclusion follow from the premises?</div>
                     <div class="statement-area">
                         <div class="statement"><span class="label">Premise 1:</span> <span class="content visible">${premise1}</span></div>
                         <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
@@ -226,7 +242,6 @@ function createTrials(argumentsData) {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div class="trial-container">
-                    <div class="question">Does the conclusion follow from the premises?</div>
                     <div class="statement-area">
                         <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
                         <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${premise2}</span></div>
@@ -256,7 +271,6 @@ function createTrials(argumentsData) {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div class="trial-container">
-                    <div class="question">Does the conclusion follow from the premises?</div>
                     <div class="statement-area">
                         <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
                         <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
@@ -286,12 +300,7 @@ function createTrials(argumentsData) {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div class="trial-container">
-                    <div class="question">Does the conclusion follow from the premises?</div>
-                    <div class="statement-area">
-                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
-                    </div>
+                    <div class="question">Did the conclusion follow from the premises?</div>
                 </div>
             `,
             choices: ['Yes', 'No'],
