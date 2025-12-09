@@ -143,9 +143,6 @@ const instructions = {
                 <p><strong>Conclusion:</strong> Therefore, & is @.</p>
             </div>
             <p>This conclusion logically follows from the premises.</p>
-            <p>Please take your time. Thank you for participating!</p>
-            <p>Click "Next" to start.</p>
-            
         </div>
     `,
     choices: ['Next'],
