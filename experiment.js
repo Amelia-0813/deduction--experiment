@@ -126,7 +126,7 @@ const instructions = {
             </div>
             <p> All three statements in this argument are false, but if we <strong>assume</strong> the premises are true, for the sake of the argument, it would follow that <strong>pigs can fly</strong>. 
             In this case, pigs are birds, and all birds fly. You should do you best to assume all premises are 
-            true, even when they obviously are not. Evaluate the truth of the conclusion asumming the premises are true.</p>
+            true, even when they obviously are not. Evaluate the truth of the conclusion assuming the premises are true.</p>
             <p><strong>Invalid Example:</strong></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All stars are planets.</p>
@@ -143,6 +143,8 @@ const instructions = {
                 <p><strong>Conclusion:</strong> Therefore, & is @.</p>
             </div>
             <p>This conclusion logically follows from the premises.</p>
+            <p>Please take your time. Thank you for participating!</p>
+            <p>Click "Next" to start.</p>
             
         </div>
     `,
