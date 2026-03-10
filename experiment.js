@@ -108,14 +108,14 @@ const instructions = {
                 <p><strong>Premise 2:</strong> Fido is a dog.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>The conclusion follows because if all dogs are mammals, and Fido is a dog, then Fido must be a mammal.</p>
+            <p>The conclusion above does follow. If all dogs are mammals, and Fido is a dog, then Fido must be a mammal.</p>
             <p><strong>Invalid Example:</strong> <em>(the conclusion does not follow)</em></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #fff3cd; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All mammals are animals.</p>
                 <p><strong>Premise 2:</strong> Fido is an animal.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>The conclusion does not follow. Fido could be any kind of animal — the premises do not establish that Fido is specifically a mammal.</p>
+            <p>The conclusion above does not follow. Fido could be any kind of animal — the premises do not establish that Fido is specifically a mammal.</p>
             <p><strong>Valid Abstract Example:</strong> <em>(the conclusion follows)</em></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All $ are @</p>
@@ -152,7 +152,7 @@ const pageTwo = {
                 <p><strong>Premise 2:</strong> Roses need water.</p>
                 <p><strong>Conclusion:</strong> Therefore, roses are living things.</p>
             </div>
-            <p>The conclusion seems true — roses are indeed living things. But it does <strong>not</strong> follow from the premises. 
+            <p>The conclusion above seems true — roses are indeed living things. But it does <strong>not</strong> follow from the premises. 
             The premises only say that living things and roses need water, but the <strong>structure</strong> of the argument does not imply that roses are living things. <strong>Answer: No.</strong></p>
 
             <p><strong>Implausible but VALID:</strong></p>
@@ -161,7 +161,7 @@ const pageTwo = {
                 <p><strong>Premise 2:</strong> Bananas are vegetables.</p>
                 <p><strong>Conclusion:</strong> Therefore, bananas are blue.</p>
             </div>
-            <p>The conclusion seems false — bananas are not actually blue. But <strong>if we pretend the premises are true</strong>, the conclusion must follow. <strong>Answer: Yes.</strong></p>
+            <p>The conclusion above seems false — bananas are not actually blue. But <strong>if we pretend the premises are true</strong>, the conclusion must follow. <strong>Answer: Yes.</strong></p>
 
             <p style="margin-top: 30px;">Focus on the <strong>structure</strong> of the argument, not whether the content matches your real-world knowledge.</p>
             <p><strong>Press 'Start' when you're ready to begin.</strong></p>
