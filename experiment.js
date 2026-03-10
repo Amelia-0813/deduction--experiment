@@ -1,10 +1,11 @@
-// Get workerId from URL parameter
+// Get participant IDs from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 const workerId = urlParams.get('workerId');
+const sona_id = urlParams.get('sona_id') || '';
 
-// generate random participant 
+// generate random participant
 let participant_num = Math.floor(Math.random() * 999) + 1;
-let participant_id = workerId || `participant${participant_num}`;
+let participant_id = workerId || sona_id || `participant${participant_num}`;
 let abstract_num = participant_num % 3;
 let condition_num = participant_num % 2;
 
@@ -95,54 +96,40 @@ const consent = {
 };
 
 const instructions = {
-    type: jsPsychHtmlButtonResponse,  
+    type: jsPsychHtmlButtonResponse,
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Instructions</h2>
-            <p>In this experiment, you will evaluate logical arguments.</p>
-            <p>Each argument consists of two premises and a conclusion. You should assume that the premises are true, and judge if the conclusion logically follows.</p>
-            <p>The premises and conclusion will appear one at a time. Click the button to advance to the next statement.</p>
-            <p>After reading all statements, you will be asked whether the conclusion logically follows from the premises.</p>
-            <p><strong>Valid Example:</strong></p>
-            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+            <p>In this experiment, you will evaluate <strong>52</strong> logical arguments.</p>
+            <p>Each argument consists of two premises and a conclusion. <strong>Assume that the premises are true</strong>, and judge whether the conclusion logically follows from them.</p>
+            <p><strong>Valid Example:</strong> <em>(the conclusion follows)</em></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All dogs are mammals.</p>
                 <p><strong>Premise 2:</strong> Fido is a dog.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>In this case, the conclusion logically follows from the premises.</p>
-            <p><strong>Invalid Example:</strong></p>
-            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+            <p>The conclusion follows because if all dogs are mammals, and Fido is a dog, then Fido must be a mammal.</p>
+            <p><strong>Invalid Example:</strong> <em>(the conclusion does not follow)</em></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #fff3cd; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All mammals are animals.</p>
                 <p><strong>Premise 2:</strong> Fido is an animal.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>In this case, the conclusion does not follow from the premises. Just because Fido is an animal does not mean he is a mammal. 
-            <p>It is important to note: a conclusion can still <strong>logically</strong> follow from the premises when any of the given statements are false. </p>
-            <p><strong>Valid Example:</strong></p>
-            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
-                <p><strong>Premise 1:</strong> All birds can fly.</p>
-                <p><strong>Premise 2:</strong> Some pigs are birds.</p>
-                <p><strong>Conclusion:</strong>  Therefore, pigs can fly.</p>
+            <p>The conclusion does not follow. Fido could be any kind of animal — the premises do not establish that Fido is specifically a mammal.</p>
+            <p><strong>Valid Abstract Example:</strong> <em>(the conclusion follows)</em></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All $ are @</p>
+                <p><strong>Premise 2:</strong> Some &amp; are $</p>
+                <p><strong>Conclusion:</strong> Therefore, some &amp; are @</p>
             </div>
-            <p> All three statements in this argument are false, but if we <strong>assume</strong> the premises are true, for the sake of the argument, it would follow that <strong>pigs can fly</strong>. 
-            In this case, pigs are birds, and all birds fly. You should do you best to assume all premises are 
-            true, even when they obviously are not. Evaluate the truth of the conclusion assuming the premises are true.</p>
-            <p><strong>Invalid Example:</strong></p>
-            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
-                <p><strong>Premise 1:</strong> All stars are planets.</p>
-                <p><strong>Premise 2:</strong> The sun is a planet.</p>
-                <p><strong>Conclusion:</strong> Therefore, the sun is a star.</p>
+            <p>This conclusion logically follows — the structure is identical to the valid example above. If all $ are @, and some & are $, then some & will be @.</p>
+            <p><strong>Invalid Abstract Example:</strong> <em>(the conclusion does not follow)</em></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #fff3cd; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All $ are @</p>
+                <p><strong>Premise 2:</strong> Some $ are &amp</p>
+                <p><strong>Conclusion:</strong> Therefore, some &amp; is @</p>
             </div>
-            <p>In this case, the conclusion is actually <strong>true</strong>, but the conclusion <strong>does not</strong> follow logically. Even if all stars were planets, and the sun was a planet, 
-            assuming "all stars are planets" does not mean all planets are stars. It could still be the case that the sun <strong>is not</strong> a star.</p>
-            <p>The first set of trials will use nonsense words and symbols. Please do your best to focus on the logic of the argument.<p>
-            <p><strong>Abstract Example:</strong></p>
-            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
-                <p><strong>Premise 1:</strong> All $ are @.</p>
-                <p><strong>Premise 2:</strong> & is $.</p>
-                <p><strong>Conclusion:</strong> Therefore, & is @.</p>
-            </div>
-            <p>This conclusion logically follows from the premises.</p>
+            <p>This conclusion does not logically follow from the premises. The premises do not determine whether any &amp; are @.
         </div>
     `,
     choices: ['Next'],
@@ -152,13 +139,31 @@ const instructions = {
 };
 
 const pageTwo = {
-    type: jsPsychHtmlButtonResponse,  
+    type: jsPsychHtmlButtonResponse,
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h2>Instructions</h2>
-            <p>
-            Take your time to think through each statement. Once you see each statement, click <strong>Yes</strong> if 
-            the conclusion logically follows, and <strong>No</strong> if it does not follow.
+            <h2>Important: Judge Logic, Not Content</h2>
+            <p>Some arguments will have conclusions that <em>seem</em> true or false based on your real-world knowledge. <strong>This should not influence your judgment.</strong></p>
+            <p>Your task is to evaluate whether the conclusion follows from the premises, not whether it seems believable or realistic.</p>
+
+            <p><strong>Plausible but INVALID:</strong> </p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #fff3cd; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All living things need water.</p>
+                <p><strong>Premise 2:</strong> Roses need water.</p>
+                <p><strong>Conclusion:</strong> Therefore, roses are living things.</p>
+            </div>
+            <p>The conclusion seems true — roses are indeed living things. But it does <strong>not</strong> follow from the premises. 
+            The premises only say that living things and roses need water, but the <strong>structure</strong> of the argument does not imply that roses are living things. <strong>Answer: No.</strong></p>
+
+            <p><strong>Implausible but VALID:</strong></p>
+            <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
+                <p><strong>Premise 1:</strong> All vegetables are blue.</p>
+                <p><strong>Premise 2:</strong> Bananas are vegetables.</p>
+                <p><strong>Conclusion:</strong> Therefore, bananas are blue.</p>
+            </div>
+            <p>The conclusion seems false — bananas are not actually blue. But <strong>if we pretend the premises are true</strong>, the conclusion must follow. <strong>Answer: Yes.</strong></p>
+
+            <p style="margin-top: 30px;">Focus on the <strong>structure</strong> of the argument, not whether the content matches your real-world knowledge.</p>
             <p><strong>Press 'Start' when you're ready to begin.</strong></p>
         </div>
     `,
@@ -166,7 +171,6 @@ const pageTwo = {
     data: {
         trial_type: 'instructions'
     }
-
 }
 
 function createTrials(argumentsData) {
@@ -176,130 +180,22 @@ function createTrials(argumentsData) {
         const premise1 = item.premise_1;
         const premise2 = item.premise_2;
         const conclusion = item.conclusion;
-        p1_rt = 0;
-        p2_rt = 0;
-        conc_rt = 0;
-        
+
         if (!premise1 || !premise2 || !conclusion) {
             console.warn('Trial missing data:', item);
             return;
         }
-        
-        let argumentStartTime = null;
 
-        timeline.push({
-            type: jsPsychHtmlKeyboardResponse,
-            stimulus: `
-                <div class="trial-container">
-                    <div class="statement-area">
-                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
-                    </div>
-                </div>
-        `,
-        choices: "ALL_KEYS",
-        data: {
-            task: 'await_premise1',
-            trial_number: index
-        }
-    });
-        
-        const premise1Trial = {
-            type: jsPsychHtmlButtonResponse,
-            stimulus: `
-                <div class="trial-container">
-                    <div class="statement-area">
-                        <div class="statement"><span class="label">Premise 1:</span> <span class="content visible">${premise1}</span></div>
-                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
-                    </div>
-                </div>
-            `,
-            choices: ["Next"],
-            data: {
-                custom_trial_type: 'premise1',
-                participant_id: participant_id,
-                trial_number: index + 1,
-                premise1: premise1,
-                premise2: premise2,
-                conclusion: conclusion,
-                correct_validity: item.validity,
-                abstraction: item.abstraction,
-                form: item.form,
-                plausibility: item.plausibility
-            },
-            on_start: function() {
-                argumentStartTime = Date.now();
-            },
-            on_finish: function(data) {
-                p1_rt = Math.round(data.rt)
-            },
-        };
-        
-        const premise2Trial = {
-            type: jsPsychHtmlButtonResponse,
-            stimulus: `
-                <div class="trial-container">
-                    <div class="statement-area">
-                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${premise2}</span></div>
-                        <div class="statement"><span class="label">Conclusion:</span> <span class="content">___</span></div>
-                    </div>
-                </div>
-            `,
-            choices: ['Next'],
-            data: {
-                custom_trial_type: 'premise2',
-                participant_id: participant_id,
-                trial_number: index + 1,
-                premise1: premise1,
-                premise2: premise2,
-                conclusion: conclusion,
-                correct_validity: item.validity,
-                abstraction: item.abstraction,
-                form: item.form,
-                plausibility: item.plausibility
-            },
-            on_finish: function(data) {
-                p2_rt = Math.round(data.rt)
-            },
-        };
-
-        const conclusionTrial = {
-            type: jsPsychHtmlButtonResponse,
-            stimulus: `
-                <div class="trial-container">
-                    <div class="statement-area">
-                        <div class="statement"><span class="label">Premise 1:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Premise 2:</span> <span class="content">___</span></div>
-                        <div class="statement"><span class="label">Conclusion:</span> <span class="content visible">${conclusion}</span></div>
-                    </div>
-                </div>
-            `, 
-            choices: ['Next'],
-            data: {
-                custom_trial_type: 'conclusion',
-                participant_id: participant_id,
-                trial_number: index + 1,
-                premise1: premise1,
-                premise2: premise2,
-                conclusion: conclusion,
-                correct_validity: item.validity,
-                abstraction: item.abstraction,
-                form: item.form,
-                plausibility: item.plausibility
-            },
-            on_finish: function(data) {
-                conc_rt = Math.round(data.rt)
-            },
-        };
-        
         const validityTrial = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
                 <div class="trial-container">
-                    <div class="question">Did the conclusion follow from the premises?</div>
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content visible">${premise1}</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${premise2}</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content visible">${conclusion}</span></div>
+                    </div>
                 </div>
             `,
             choices: ['Yes', 'No'],
@@ -316,15 +212,10 @@ function createTrials(argumentsData) {
                 plausibility: item.plausibility
             },
             on_finish: function(data) {
-                const totalTime = Date.now() - argumentStartTime;
                 data.participant_response = data.response === 0 ? 'valid' : 'invalid';
-                data.p1_rt = p1_rt,
-                data.p2_rt = p2_rt,
-                data.conc_rt = conc_rt,
                 data.response_rt = Math.round(data.rt);
-                data.total_argument_time = Math.round(totalTime);
                 data.is_correct = data.participant_response === data.correct_validity ? 1 : 0;
-                
+
                 console.log(`Trial ${index + 1} completed:`, {
                     premises: [premise1, premise2],
                     conclusion: conclusion,
@@ -334,11 +225,7 @@ function createTrials(argumentsData) {
                     abstraction: data.abstraction,
                     form: data.form,
                     plausibility: item.plausibility,
-                    p1_rt,
-                    p2_rt,
-                    conc_rt,
-                    rt: data.response_rt,
-                    total_time: data.total_argument_time
+                    rt: data.response_rt
                 });
             }
         };
@@ -354,7 +241,7 @@ function createTrials(argumentsData) {
             }
         };
         
-        experimentTrials.push(premise1Trial, premise2Trial, conclusionTrial, validityTrial, next);
+        experimentTrials.push(validityTrial, next);
     });
     
     return experimentTrials;
@@ -369,11 +256,11 @@ function getFilteredData() {
     
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,conc_rt,response_rt,total_argument_time\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt\n';
     }
     
     try {
-        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,conc_rt,response_rt,total_argument_time';
+        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt';
         const rows = [];
         
         judgmentTrials.forEach((trial, trialIndex) => {
@@ -391,11 +278,7 @@ function getFilteredData() {
                 trial.form || '',
                 trial.abstraction || '',
                 trial.plausibility || '',
-                Math.round(trial.p1_rt || 0),
-                Math.round(trial.p2_rt || 0),
-                Math.round(trial.conc_rt || 0),
-                Math.round(trial.response_rt || 0),
-                Math.round(trial.total_argument_time || 0)
+                Math.round(trial.response_rt || 0)
             ];
             
             rows.push(row);
@@ -417,7 +300,7 @@ function getFilteredData() {
         return finalCSV;
     } catch (error) {
         console.error("Error in getFilteredData:", error);
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,p1_rt,p2_rt,conc_rt,response_rt,total_argument_time\nerror,0,error,error,error,error,error,error,0,0,0\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt\nerror,0,error,error,error,error,error,error,0,0,0\n';
     }
 }
 
@@ -436,15 +319,18 @@ const save_data = {
     }
 };
 
-// NEW: Qualtrics survey integration
+// SONA completion URL — fill in your school domain, experiment_id, and credit_token
+const SONA_DOMAIN = 'uwmadison.sona-systems.com';       // e.g. 'uwmadison.sona-systems.com'
+const SONA_EXPERIMENT_ID = '2234';          // from the SONA study page
+const SONA_CREDIT_TOKEN = '27ca6e5154dc47b5a0070312948e9005';            // from the SONA study page
+
 const qualtrics_survey = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
         <div style="text-align: center; max-width: 800px; margin: 0 auto;">
             <h2>Post-Experiment Survey</h2>
-            <p>Please complete a brief survey about your experience.</p>
-            <p>The survey will open in a new window.</p>
-            <p><strong>You will receive a completion code after completing the survey.</strong></p>
+            <p>Please complete this brief survey. You will need to complete the survey to recieve credit.</p>
+            <p>You will be redirected automatically. If the survey does not open, please click "Continue."</p>
         </div>
     `,
     choices: ['Continue'],
@@ -452,8 +338,12 @@ const qualtrics_survey = {
         trial_type: 'qualtrics_instruction'
     },
     on_finish: function() {
-        const qualtricsURL = `https://uwmadison.co1.qualtrics.com/jfe/form/SV_0dnWlrTfrGaRhGu?workerId=${participant_id}`;
+        const qualtricsURL = `https://uwmadison.co1.qualtrics.com/jfe/form/SV_0dnWlrTfrGaRhGu?workerId=${participant_id}&sona_id=${sona_id}`;
+        const sonaURL = `https://${SONA_DOMAIN}`;
+
+        // Open Qualtrics in a new tab; redirect current window to SONA for credit
         window.open(qualtricsURL, '_blank');
+        window.location.href = sonaURL;
     }
 };
 
