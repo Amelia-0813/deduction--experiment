@@ -100,7 +100,7 @@ const instructions = {
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Instructions</h2>
-            <p>In this experiment, you will evaluate <strong>52</strong> logical arguments.</p>
+            <p>In this experiment, you will evaluate <strong>58</strong> logical arguments. There are 6 practice problems, and 52 trials.</p>
             <p>Each argument consists of two premises and a conclusion. <strong>Assume that the premises are true</strong>, and judge whether the conclusion logically follows from them.</p>
             <p><strong>Valid Example:</strong> <em>(the conclusion follows)</em></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
@@ -108,14 +108,14 @@ const instructions = {
                 <p><strong>Premise 2:</strong> Fido is a dog.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>The conclusion above does follow. If all dogs are mammals, and Fido is a dog, then Fido must be a mammal.</p>
+            <p>The conclusion follows because if all dogs are mammals, and Fido is a dog, then Fido must be a mammal.</p>
             <p><strong>Invalid Example:</strong> <em>(the conclusion does not follow)</em></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #fff3cd; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All mammals are animals.</p>
                 <p><strong>Premise 2:</strong> Fido is an animal.</p>
                 <p><strong>Conclusion:</strong> Therefore, Fido is a mammal.</p>
             </div>
-            <p>The conclusion above does not follow. Fido could be any kind of animal — the premises do not establish that Fido is specifically a mammal.</p>
+            <p>The conclusion does not follow. Fido could be any kind of animal — the premises do not establish that Fido is specifically a mammal.</p>
             <p><strong>Valid Abstract Example:</strong> <em>(the conclusion follows)</em></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
                 <p><strong>Premise 1:</strong> All $ are @</p>
@@ -152,7 +152,7 @@ const pageTwo = {
                 <p><strong>Premise 2:</strong> Roses need water.</p>
                 <p><strong>Conclusion:</strong> Therefore, roses are living things.</p>
             </div>
-            <p>The conclusion above seems true — roses are indeed living things. But it does <strong>not</strong> follow from the premises. 
+            <p>The conclusion seems true — roses are indeed living things. But it does <strong>not</strong> follow from the premises. 
             The premises only say that living things and roses need water, but the <strong>structure</strong> of the argument does not imply that roses are living things. <strong>Answer: No.</strong></p>
 
             <p><strong>Implausible but VALID:</strong></p>
@@ -161,7 +161,7 @@ const pageTwo = {
                 <p><strong>Premise 2:</strong> Bananas are vegetables.</p>
                 <p><strong>Conclusion:</strong> Therefore, bananas are blue.</p>
             </div>
-            <p>The conclusion above seems false — bananas are not actually blue. But <strong>if we pretend the premises are true</strong>, the conclusion must follow. <strong>Answer: Yes.</strong></p>
+            <p>The conclusion seems false — bananas are not actually blue. But <strong>if we pretend the premises are true</strong>, the conclusion must follow. <strong>Answer: Yes.</strong></p>
 
             <p style="margin-top: 30px;">Focus on the <strong>structure</strong> of the argument, not whether the content matches your real-world knowledge.</p>
             <p><strong>Press 'Start' when you're ready to begin.</strong></p>
@@ -171,6 +171,137 @@ const pageTwo = {
     data: {
         trial_type: 'instructions'
     }
+}
+
+const practice_intro = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2>Practice</h2>
+            <p>Before the main task begins, you will complete <strong>6 practice problems</strong>.</p>
+            <p>You will receive feedback after each one.</p>
+            <p><strong>Press 'Begin Practice' when you're ready.</strong></p>
+        </div>
+    `,
+    choices: ['Begin Practice'],
+    data: { trial_type: 'practice_intro' }
+};
+
+const practice_end = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2>Practice Complete</h2>
+            <p>You have finished the practice trials. The main experiment will now begin.</p>
+            <p>Remember: <strong>assume the premises are true</strong> and judge whether the conclusion logically follows — regardless of whether the content seems realistic.</p>
+            <p><strong>Press 'Begin' to start.</strong></p>
+        </div>
+    `,
+    choices: ['Begin'],
+    data: { trial_type: 'practice_end' }
+};
+
+function createPracticeTrials() {
+    const practiceItems = [
+        {
+            premise1: 'All D are S',
+            premise2: 'Some D are W',
+            conclusion: 'Some S are W',
+            correct_response: 0,
+            feedback_correct: 'Correct!',
+            feedback_incorrect: 'Not quite. Some S must be W, because all D are S and some D are W. The answer is <strong>Yes</strong>, the conclusion follows.'
+        },
+        {
+            premise1: 'Some & are %',
+            premise2: 'All $ are &',
+            conclusion: 'Some $ are %',
+            correct_response: 1,
+            feedback_correct: 'Correct!',
+            feedback_incorrect: 'Not quite. It is possible that no $ are %. All $ can be & wihtout being %, even though some & are %. The answer is <strong>No</strong>, the conclusion does not follow.'
+        },
+                {
+            premise1: 'Some stonces are gurks',
+            premise2: 'All vumps are stonces',
+            conclusion: 'Some vumps are gurks',
+            correct_response: 0,
+            feedback_correct: 'Correct!',
+            feedback_incorrect: 'Not quite. Some vumps must be gurks, because all vumps are stonces, and some stonces are gurks. The answer is <strong>Yes</strong>, the conclusion follows.'
+        },
+        {
+            premise1: 'All birds have wings.',
+            premise2: 'Some robins are birds.',
+            conclusion: 'Some robins have wings.',
+            correct_response: 0,
+            feedback_correct: 'Correct!',
+            feedback_incorrect: 'Not quite. If all birds have wings, and some robins are birds, then some robins must have wings. The answer is <strong>Yes</strong>.'
+        },
+        {
+            premise1: 'All fish live in water.',
+            premise2: 'Some trout live in water.',
+            conclusion: 'Some trout are fish.',
+            correct_response: 1,
+            feedback_correct: 'Correct! In the real world, trout are fish and live in water, but the premises do not imply that all things that live in water are fish. The premises only say that fish live in water. They do not say that any trout are fish. The conclusion does not follow. The answer is <strong>No</strong>.',
+            feedback_incorrect: 'Not quite. In the real world, trout are fish and live in water, but the premises do not imply that all things that live in water are fish. The premises only say that fish live in water. They do not say that any trout are fish. The conclusion does not follow. The answer is <strong>No</strong>.'
+        },
+        {
+            premise1: 'All mammals are cold-blooded.',
+            premise2: 'Some birds are mammals.',
+            conclusion: 'Some birds are cold-blooded.',
+            correct_response: 0,
+            feedback_correct: 'Correct! Even though this contradicts real-world knowledge, remember: <em>assume the premises are true</em>. If all mammals are cold-blooded and birds are mammals, the conclusion must follow. The answer is <strong>Yes</strong>.',
+            feedback_incorrect: 'Not quite. Remember: judge the logic, not the content. Even though mammals are not actually cold-blooded, and birds aren\'t mammals, <em>if we assume the premises are true</em>, the conclusion must follow. The answer is <strong>Yes</strong>.'
+        }
+    ];
+
+    const practiceTrials = [];
+
+    practiceItems.forEach((item, index) => {
+        let practice_response = null;
+
+        const trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content visible">${item.premise1}</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${item.premise2}</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content visible">${item.conclusion}</span></div>
+                    </div>
+                    <p style="color: #888; font-size: 14px; margin-top: 10px;">Practice problem ${index + 1} of 6</p>
+                </div>
+            `,
+            choices: ['Yes', 'No'],
+            data: { custom_trial_type: 'practice' },
+            on_finish: function(data) {
+                practice_response = data.response;
+            }
+        };
+
+        const feedback = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: function() {
+                const is_correct = practice_response === item.correct_response;
+                const bg = is_correct ? '#d4edda' : '#f8d7da';
+                const header = is_correct ? '&#10003; Correct' : '&#10007; Incorrect';
+                const message = is_correct ? item.feedback_correct : item.feedback_incorrect;
+                return `
+                    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                        <div style="padding: 20px 30px; background-color: ${bg}; border-radius: 8px;">
+                            <p style="font-size: 22px; font-weight: bold; margin: 0 0 12px;">${header}</p>
+                            <p style="font-size: 18px; margin: 0;">${message}</p>
+                        </div>
+                    </div>
+                `;
+            },
+            choices: ['Next'],
+            data: { custom_trial_type: 'practice_feedback' }
+        };
+
+        practiceTrials.push(trial, feedback);
+    });
+
+    return practiceTrials;
 }
 
 function createTrials(argumentsData) {
@@ -506,9 +637,12 @@ async function runExperiment() {
             consent,
             instructions,
             pageTwo,
+            practice_intro,
+            ...createPracticeTrials(),
+            practice_end,
             ...allTrials,
             save_data,
-            qualtrics_survey,  
+            qualtrics_survey,
         ];
 
         console.log('Timeline initialized with', timeline.length, 'items');
