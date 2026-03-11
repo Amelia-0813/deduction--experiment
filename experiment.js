@@ -100,7 +100,7 @@ const instructions = {
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Instructions</h2>
-            <p>In this experiment, you will evaluate <strong>58</strong> logical arguments. There are 6 practice problems, and 52 trials.</p>
+            <p>In this experiment, you will evaluate <strong>59</strong> logical arguments. There are 7 practice problems, and 52 trials.</p>
             <p>Each argument consists of two premises and a conclusion. <strong>Assume that the premises are true</strong>, and judge whether the conclusion logically follows from them.</p>
             <p><strong>Valid Example:</strong> <em>(the conclusion follows)</em></p>
             <div style="text-align: left; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #d4edda; border-radius: 5px;">
@@ -250,6 +250,14 @@ function createPracticeTrials() {
             correct_response: 0,
             feedback_correct: 'Correct! Even though this contradicts real-world knowledge, remember: <em>assume the premises are true</em>. If all mammals are cold-blooded and birds are mammals, the conclusion must follow. The answer is <strong>Yes</strong>.',
             feedback_incorrect: 'Not quite. Remember: judge the logic, not the content. Even though mammals are not actually cold-blooded, and birds aren\'t mammals, <em>if we assume the premises are true</em>, the conclusion must follow. The answer is <strong>Yes</strong>.'
+        },
+        {
+            premise1: 'All monkeys are birds.',
+            premise2: 'Some birds are griaffes.',
+            conclusion: 'Some giraffes are monkeys.',
+            correct_response: 1,
+            feedback_correct: 'Correct! Logically, it is possible that no giraffes are monkeys. Judge the logic, not the content. The answer is <strong>No</strong>.',
+            feedback_incorrect: 'Not quite. Logically, it is possible that no giraffes are monkeys. The answer is <strong>No</strong>.'
         }
     ];
 
@@ -268,7 +276,7 @@ function createPracticeTrials() {
                         <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${item.premise2}</span></div>
                         <div class="statement"><span class="label">Conclusion:</span> <span class="content visible">${item.conclusion}</span></div>
                     </div>
-                    <p style="color: #888; font-size: 14px; margin-top: 10px;">Practice problem ${index + 1} of 6</p>
+                    <p style="color: #888; font-size: 14px; margin-top: 10px;">Practice problem ${index + 1} of 7</p>
                 </div>
             `,
             choices: ['Yes', 'No'],
