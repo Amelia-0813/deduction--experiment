@@ -219,7 +219,7 @@ function createPracticeTrials() {
             feedback_correct: 'Correct!',
             feedback_incorrect: 'Not quite. It is possible that no $ are %. All $ can be & wihtout being %, even though some & are %. The answer is <strong>No</strong>, the conclusion does not follow.'
         },
-                {
+        {
             premise1: 'Some stonces are gurks',
             premise2: 'All vumps are stonces',
             conclusion: 'Some vumps are gurks',
@@ -294,6 +294,15 @@ function createPracticeTrials() {
                 const header = is_correct ? '&#10003; Correct' : '&#10007; Incorrect';
                 const message = is_correct ? item.feedback_correct : item.feedback_incorrect;
                 return `
+                <div class="trial-container">
+                    <div class="question">Does the conclusion follow from the premises?</div>
+                    <div class="statement-area">
+                        <div class="statement"><span class="label">Premise 1:</span> <span class="content visible">${item.premise1}</span></div>
+                        <div class="statement"><span class="label">Premise 2:</span> <span class="content visible">${item.premise2}</span></div>
+                        <div class="statement"><span class="label">Conclusion:</span> <span class="content visible">${item.conclusion}</span></div>
+                    </div>
+                    <p style="color: #888; font-size: 14px; margin-top: 10px;">Practice problem ${index + 1} of 7</p>
+                </div>
                     <div style="max-width: 600px; margin: 0 auto; text-align: center;">
                         <div style="padding: 20px 30px; background-color: ${bg}; border-radius: 8px;">
                             <p style="font-size: 22px; font-weight: bold; margin: 0 0 12px;">${header}</p>
