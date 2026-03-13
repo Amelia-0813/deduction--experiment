@@ -5,7 +5,7 @@ const sona_id = urlParams.get('sona_id') || '';
 
 // generate random participant
 let participant_num = Math.floor(Math.random() * 999) + 1;
-let participant_id = workerId || sona_id || `participant${participant_num}`;
+let participant_id = `participant${participant_num}`;
 let abstract_num = participant_num % 3;
 let condition_num = participant_num % 2;
 
@@ -178,7 +178,7 @@ const practice_intro = {
     stimulus: `
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2>Practice</h2>
-            <p>Before the main task begins, you will complete <strong>6 practice problems</strong>.</p>
+            <p>Before the main task begins, you will complete <strong>7 practice problems</strong>.</p>
             <p>You will receive feedback after each one.</p>
             <p><strong>Press 'Begin Practice' when you're ready.</strong></p>
         </div>
