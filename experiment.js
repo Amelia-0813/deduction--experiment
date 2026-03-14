@@ -391,7 +391,56 @@ function createTrials(argumentsData) {
         
         experimentTrials.push(validityTrial, next);
     });
-    
+
+    // Insert attention checks at 1/3 and 2/3 through the main trials.
+    // Each argument occupies 2 slots (validityTrial + next), so multiply by 2.
+    const n = argumentsData.length;
+    const pos1 = Math.floor(n / 3) * 2;
+    const pos2 = Math.floor(2 * n / 3) * 2 + 1; // +1 to account for check1 already inserted
+
+    const attentionCheck1 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `
+            <div class="trial-container">
+                <div class="question" style="color: #555;">Does the conclusion follow from the premises?</div>
+                <div style="font-size: 20px; margin: 40px 0; text-align: center;">
+                    Please press <strong>Yes</strong> to continue.
+                </div>
+            </div>
+        `,
+        choices: ['Yes', 'No'],
+        data: {
+            custom_trial_type: 'attention_check',
+            correct_response: 0
+        },
+        on_finish: function(data) {
+            data.passed = data.response === 0 ? 1 : 0;
+        }
+    };
+
+    const attentionCheck2 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `
+            <div class="trial-container">
+                <div class="question" style="color: #555;">Does the conclusion follow from the premises?</div>
+                <div style="font-size: 20px; margin: 40px 0; text-align: center;">
+                    Please press <strong>No</strong> to continue.
+                </div>
+            </div>
+        `,
+        choices: ['Yes', 'No'],
+        data: {
+            custom_trial_type: 'attention_check',
+            correct_response: 1
+        },
+        on_finish: function(data) {
+            data.passed = data.response === 1 ? 1 : 0;
+        }
+    };
+
+    experimentTrials.splice(pos1, 0, attentionCheck1);
+    experimentTrials.splice(pos2, 0, attentionCheck2);
+
     return experimentTrials;
 }
 
@@ -400,21 +449,21 @@ function getFilteredData() {
     console.log('All trials:', allTrials.length);
     
     const judgmentTrials = allTrials.filter(trial => trial.custom_trial_type === 'validity_judgment');
+    const attentionTrials = allTrials.filter(trial => trial.custom_trial_type === 'attention_check');
     console.log(`Validity judgment trials found: ${judgmentTrials.length}`);
-    
+    console.log(`Attention check trials found: ${attentionTrials.length}`);
+
     if (judgmentTrials.length === 0) {
         console.error("No validity judgment trials found!");
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt,attention_passed\n';
     }
-    
+
     try {
-        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt';
+        const header = 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt,attention_passed';
         const rows = [];
-        
+
         judgmentTrials.forEach((trial, trialIndex) => {
-            console.log(`Processing trial ${trialIndex + 1}:`, trial);
-            
-            const row = [
+            rows.push([
                 trial.participant_id || participant_id,
                 trial.trial_number || trialIndex + 1,
                 trial.premise1 || '',
@@ -425,14 +474,22 @@ function getFilteredData() {
                 trial.is_correct !== undefined ? trial.is_correct : '',
                 trial.form || '',
                 trial.abstraction || '',
-                trial.plausibility || '',
-                Math.round(trial.response_rt || 0)
-            ];
-            
-            rows.push(row);
-            console.log(`Added response row:`, row);
+                trial.plausibility !== undefined && trial.plausibility !== null ? trial.plausibility : '',
+                Math.round(trial.response_rt || 0),
+                ''
+            ]);
         });
-        
+
+        attentionTrials.forEach((trial, trialIndex) => {
+            rows.push([
+                participant_id,
+                trialIndex + 1,
+                '', '', '', '', '', '', '', 'attention', '',
+                Math.round(trial.rt || 0),
+                trial.passed !== undefined ? trial.passed : ''
+            ]);
+        });
+
         const csvRows = rows.map(row => {
             return row.map(value => {
                 if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
@@ -441,14 +498,14 @@ function getFilteredData() {
                 return value;
             }).join(',');
         });
-        
+
         const finalCSV = header + '\n' + csvRows.join('\n');
         console.log("Generated CSV data:", finalCSV);
-        
+
         return finalCSV;
     } catch (error) {
         console.error("Error in getFilteredData:", error);
-        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt\nerror,0,error,error,error,error,error,error,0,0,0\n';
+        return 'subCode,trial_num,premise1,premise2,conclusion,correct_validity,participant_response,is_correct,form,abstraction,plausibility,response_rt,attention_passed\nerror,0,error,error,error,error,error,error,0,0,0\n';
     }
 }
 
